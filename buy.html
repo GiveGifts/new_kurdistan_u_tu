@@ -6,7 +6,7 @@
     <title>Product Checkout</title>
     <link rel="stylesheet" href="cheakoutstyle.css"> <!-- Link to your external CSS file -->
     <!-- Include PayPal JavaScript SDK -->
-    <script src="Ac9B1CNQsRCRUnactPf7aJwhOC4egv5pHouvnBgTUAIiSUQPIVaISGf90DCAfMUbUATHSa8lAgyvLkVs"></script>
+    <script src="https://www.paypal.com/sdk/js?client-id=Ac9B1CNQsRCRUnactPf7aJwhOC4egv5pHouvnBgTUAIiSUQPIVaISGf90DCAfMUbUATHSa8lAgyvLkVs"></script>
 </head>
 <body>
 
@@ -114,32 +114,6 @@
 
     </form>
 </div>
-
-<script src="https://www.paypal.com/sdk/js?client-id=Ac9B1CNQsRCRUnactPf7aJwhOC4egv5pHouvnBgTUAIiSUQPIVaISGf90DCAfMUbUATHSa8lAgyvLkVs"></script>
-
-<script>
-    // PayPal Button Configuration
-    paypal.Buttons({
-        createOrder: function(data, actions) {
-            // This function sets up the details of the transaction, including the amount and line item details.
-            return actions.order.create({
-                purchase_units: [{
-                    amount: {
-                        value: '10.00' // Placeholder value, this will be replaced with actual total price
-                    }
-                }]
-            });
-        },
-        onApprove: function(data, actions) {
-            // This function captures the funds from the transaction.
-            return actions.order.capture().then(function(details) {
-                // Call your server to save the transaction
-                alert('Transaction completed by ' + details.payer.name.given_name);
-                // Redirect or show a success message
-            });
-        }
-    }).render('#paypal-button-container');
-</script>
 
 <script>
     document.getElementById("increment").addEventListener("click", function() {
