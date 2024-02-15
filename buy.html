@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Checkout</title>
+    <link rel="stylesheet" href="cheakoutstyle.css"> <!-- Link to your external CSS file -->
+    <!-- Include PayPal JavaScript SDK -->
+    <script src="Ac9B1CNQsRCRUnactPf7aJwhOC4egv5pHouvnBgTUAIiSUQPIVaISGf90DCAfMUbUATHSa8lAgyvLkVs"></script>
+</head>
+<body>
+
+    <div class="container">
+        <form id="checkoutForm">
+            <h2>Product Checkout</h2>
+            <p>This is a simple checkout page for selling one product.</p>
+            
+            <div class="product-info">
+                <img src="product_image.png" alt="Product Image" class="product-image">
+                <div class="product-quantity">
+                    <label for="quantity">Quantity:</label>
+                    <div class="quantity-input">
+                        <button type="button" class="quantity-btn" id="decrement">-</button>
+                        <input type="number" id="quantity" name="quantity" value="1" min="1" required>
+                        <button type="button" class="quantity-btn" id="increment">+</button>
+                    </div>
+                </div>
+            </div>
+            <h3>Shipping Information</h3>
+            
+            <div class="form-group">
+                <label for="fullName">Full Name:</label>
+                <input type="text" id="fullName" name="fullName" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="country">Country:</label>
+                <select id="country" name="country" required>
+                    <option value="Albania">Albania</option>
+                    <option value="Andorra">Andorra</option>
+                    <option value="Austria">Austria</option>
+                    <option value="Belarus">Belarus</option>
+                    <option value="Belgium">Belgium</option>
+                    <option value="Bosnia and Herzegovina">Bosnia and Herzegovina</option>
+                    <option value="Bulgaria">Bulgaria</option>
+                    <option value="Canada">Canada</option>
+                    <option value="Croatia">Croatia</option>
+                    <option value="Cyprus">Cyprus</option>
+                    <option value="Czech Republic">Czech Republic</option>
+                    <option value="Denmark">Denmark</option>
+                    <option value="Finland">Finland</option>
+                    <option value="France">France</option>
+                    <option value="Germany">Germany</option>
+                    <option value="Greece">Greece</option>
+                    <option value="Hungary">Hungary</option>
+                    <option value="Italy">Italy</option>
+                    <option value="Luxembourg">Luxembourg</option>
+                    <option value="Netherlands">Netherlands-Holland</option>
+                    <option value="Norway">Norway</option>
+                    <option value="Poland">Poland</option>
+                    <option value="Portugal">Portugal</option>
+                    <option value="Romania">Romania</option>
+                    <option value="Spain">Spain</option>
+                    <option value="Sweden">Sweden</option>
+                    <option value="Switzerland">Switzerland</option>
+                    <option value="Turkey">Turkey</option>
+                    <option value="United Kingdom">United Kingdom</option>
+                    <option value="United States">United States</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="street">Street Name:</label>
+                <input type="text" id="street" name="street" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="houseNumber">House Number:</label>
+                <input type="text" id="houseNumber" name="houseNumber" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="postalCode">Postal Code:</label>
+                <input type="text" id="postalCode" name="postalCode" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="city">City:</label>
+                <input type="text" id="city" name="city" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="phone">Phone Number:</label>
+                <input type="tel" id="phone" name="phone" required>
+            </div>
+
+       
+        <div class="price-info">
+            <div class="book-quantity">
+                <span id="bookQuantity">1 Book(s)</span>
+            </div>
+            <div class="total-price">
+                <span id="totalPrice">Total Price: 10 Euro</span>
+            </div>
+        </div>
+
+        <!-- PayPal Button -->
+        <div id="paypal-button"></div>
+
+    </form>
+</div>
+
+<script src="https://www.paypal.com/sdk/js?client-id=Ac9B1CNQsRCRUnactPf7aJwhOC4egv5pHouvnBgTUAIiSUQPIVaISGf90DCAfMUbUATHSa8lAgyvLkVs"></script>
+
+<script>
+    // PayPal Button Configuration
+    paypal.Buttons({
+        createOrder: function(data, actions) {
+            // This function sets up the details of the transaction, including the amount and line item details.
+            return actions.order.create({
+                purchase_units: [{
+                    amount: {
+                        value: '10.00' // Placeholder value, this will be replaced with actual total price
+                    }
+                }]
+            });
+        },
+        onApprove: function(data, actions) {
+            // This function captures the funds from the transaction.
+            return actions.order.capture().then(function(details) {
+                // Call your server to save the transaction
+                alert('Transaction completed by ' + details.payer.name.given_name);
+                // Redirect or show a success message
+            });
+        }
+    }).render('#paypal-button-container');
+</script>
+
+<script>
+    document.getElementById("increment").addEventListener("click", function() {
+        var quantityInput = document.getElementById("quantity");
+        var quantity = parseInt(quantityInput.value);
+        quantityInput.value = quantity + 1;
+        updateTotalPrice(); // Update total price when quantity changes
+        updateBookQuantity(); // Update book quantity
+    });
+
+    document.getElementById("decrement").addEventListener("click", function() {
+        var quantityInput = document.getElementById("quantity");
+        var quantity = parseInt(quantityInput.value);
+        if (quantity > 1) {
+            quantityInput.value = quantity - 1;
+            updateTotalPrice(); // Update total price when quantity changes
+            updateBookQuantity(); // Update book quantity
+        }
+    });
+
+    document.getElementById("quantity").addEventListener("input", function() {
+        updateTotalPrice(); // Update total price when quantity changes
+        updateBookQuantity(); // Update book quantity
+    });
+
+
+    function updateTotalPrice() {
+        var quantity = parseInt(document.getElementById("quantity").value);
+        var bookPrice = 10; // Assuming the book price is always 10 Euro
+        var country = document.getElementById("country").value;
+        var shippingPrice;
+
+        // Set shipping price based on the selected country
+        switch (country) {
+            case "Germany":
+            case "Denmark":
+                shippingPrice = 10;
+                break;
+            case "Sweden":
+            case "Switzerland":
+            case "Turkey":
+            case "United Kingdom":
+            case "United States":
+            case "Norway":
+            case "Finland":
+                shippingPrice = 14;
+                break;
+            default:
+                shippingPrice = 12;
+                break;
+        }
+
+        var totalPrice = (quantity * bookPrice) + shippingPrice;
+        document.getElementById("totalPrice").textContent = "Total Price: " + totalPrice + " Euro";
+    }
+
+    function updateBookQuantity() {
+        var quantity = parseInt(document.getElementById("quantity").value);
+        document.getElementById("bookQuantity").textContent = quantity + " Book(s)";
+    }
+
+    document.getElementById("country").addEventListener("change", function() {
+        updateTotalPrice(); // Update total price when country changes
+    });
+
+    // Initialize PayPal Button
+    paypal.Buttons({
+        createOrder: function(data, actions) {
+            // This function sets up the details of the transaction
+            var quantity = parseInt(document.getElementById("quantity").value);
+            var bookPrice = 10; // Assuming the book price is always 10 Euro
+            var country = document.getElementById("country").value;
+            var shippingPrice;
+
+            // Set shipping price based on the selected country
+            switch (country) {
+                case "Germany":
+                case "Denmark":
+                    shippingPrice = 10;
+                    break;
+                case "Sweden":
+                case "Switzerland":
+                case "Turkey":
+                case "United Kingdom":
+                case "United States":
+                case "Norway":
+                case "Finland":
+                    shippingPrice = 14;
+                    break;
+                default:
+                    shippingPrice = 12;
+                    break;
+            }
+
+            var totalPrice = (quantity * bookPrice) + shippingPrice;
+
+            // Return the details for the transaction
+            return actions.order.create({
+                purchase_units: [{
+                    amount: {
+                        value: totalPrice.toString(), // Convert to string
+                        currency_code: 'EUR' // Set currency code
+                    }
+                }]
+            });
+        },
+        onApprove: function(data, actions) {
+            // This function captures the funds from the transaction
+            return actions.order.capture().then(function(details) {
+                // Call your backend to save the transaction details if needed
+                alert('Transaction completed by ' + details.payer.name.given_name);
+            });
+        }
+    }).render('#paypal-button');
+</script>
+
+</body>
+</html>

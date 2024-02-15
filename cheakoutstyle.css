@@ -1,0 +1,144 @@
+.container {
+    max-width: 600px;
+    margin: auto;
+    padding: 50px;
+    background-color: #5e5e5e;
+    border-radius: 0px;
+    box-shadow: 0 0 0px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.price-info {
+    display: block;
+    margin-top: 40px;
+    margin-left: 30px;
+    width: 80%;
+    padding: 2px;
+    border: 1px solid #ccc;
+    border-radius: 13px; /* Adjust border radius to match other form elements */
+    background-color: #fff;
+    font-size: 16px;
+    margin-bottom: 20px;
+    appearance: none;
+    
+}
+.book-quantity {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.shipping-price, 
+.total-price {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+
+
+.product-info {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    
+}
+
+.product-image {
+    width: 80px;
+    height: auto;
+    margin-right: 20px;
+    margin-left: 20px;
+}
+
+.product-quantity {
+    flex-grow: 1;
+    margin-right: 20px; /* Added */
+}
+
+.quantity-input {
+    display: flex;
+    align-items: center;
+}
+
+.quantity-btn {
+    padding: 5px 10px;
+    background-color: #000000;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 0 5px;
+}
+
+#quantity {
+    width: 25px;
+    padding: 6px;
+    border: 0px solid #000000;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #4e4b4b;
+    border-radius: 13px;
+}
+
+button[type="submit"] {
+    margin-top: 15px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+    background-color: #0056b3;
+    
+}
+#country {
+    display: block;
+    width: 110%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 13px; /* Adjust border radius to match other form elements */
+    background-color: #fff;
+    font-size: 16px;
+    margin-bottom: 15px;
+    appearance: none;
+    
+}
+
+/* Style the dropdown arrow */
+#country::after {
+    content: '\25BC'; /* Unicode character for down arrow */
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    pointer-events: none; /* Ensure the arrow is not clickable */
+    text-align: center;
+}
+
+/* Style the dropdown options */
+#country option {
+    background-color: #fff; /* Set background color */
+    color: #000; /* Set text color */
+    text-align: center;
+}
