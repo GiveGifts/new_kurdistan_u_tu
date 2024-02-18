@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+   
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Product Checkout</title>
     <link rel="stylesheet" href="cheakoutstyle.css"> <!-- Link to your external CSS file -->
     <!-- Include PayPal JavaScript SDK -->
-    <script src="https://www.paypal.com/sdk/js?client-id=ASOBbmLcFTc4tlLNk0OJ1lsmMAvTq7bqU-kxSxSCwP68VroJ_HuTvemhj1gJF2dvWzFgBqgWIl2a94kS"></script>
-</head>
+    <script src="https://www.paypal.com/sdk/js?client-id=ASOBbmLcFTc4tlLNk0OJ1lsmMAvTq7bqU-kxSxSCwP68VroJ_HuTvemhj1gJF2dvWzFgBqgWIl2a94kS&currency=EUR"></script></head>
 <body>
-
+    <p>Hej</p>
     <div class="container">
         <form id="checkoutForm">
-            <h2>Prsdawdt</h2>
+            <h2>Product Checkout</h2>
             <p>This is a simple checkout page for selling one product.</p>
-            
+
             <div class="product-info">
                 <img src="product_image.png" alt="Product Image" class="product-image">
                 <div class="product-quantity">
@@ -27,12 +27,12 @@
                 </div>
             </div>
             <h3>Shipping Information</h3>
-            
+
             <div class="form-group">
                 <label for="fullName">Full Name:</label>
                 <input type="text" id="fullName" name="fullName" required>
             </div>
-            
+
             <div class="form-group">
                 <label for="country">Country:</label>
                 <select id="country" name="country" required>
@@ -68,132 +68,95 @@
                     <option value="United States">United States</option>
                 </select>
             </div>
-            
+
             <div class="form-group">
                 <label for="street">Street Name:</label>
                 <input type="text" id="street" name="street" required>
             </div>
-            
+
             <div class="form-group">
                 <label for="houseNumber">House Number:</label>
                 <input type="text" id="houseNumber" name="houseNumber" required>
             </div>
-            
+
             <div class="form-group">
                 <label for="postalCode">Postal Code:</label>
                 <input type="text" id="postalCode" name="postalCode" required>
             </div>
-            
+
             <div class="form-group">
                 <label for="city">City:</label>
                 <input type="text" id="city" name="city" required>
             </div>
-            
+
             <div class="form-group">
                 <label for="email">Email:</label>
                 <input type="email" id="email" name="email" required>
             </div>
-            
+
             <div class="form-group">
                 <label for="phone">Phone Number:</label>
                 <input type="tel" id="phone" name="phone" required>
             </div>
 
-       
-        <div class="price-info">
-            <div class="book-quantity">
-                <span id="bookQuantity">1 Book(s)</span>
+
+            <div class="price-info">
+                <div class="book-quantity">
+                    <span id="bookQuantity">1 Book(s)</span>
+                </div>
+                <div class="total-price">
+                    <span id="totalPrice">Total Price: 10 Euro</span>
+                </div>
             </div>
-            <div class="total-price">
-                <span id="totalPrice">Total Price: 10 Euro</span>
-            </div>
-        </div>
 
-        <!-- PayPal Button -->
-        <div id="paypal-button"></div>
+            <!-- PayPal Button -->
+           <div id="paypal-button-container"></div>
 
-    </form>
-</div>
+        </form>
+    </div>
 
-<script>
-    document.getElementById("increment").addEventListener("click", function() {
-        var quantityInput = document.getElementById("quantity");
-        var quantity = parseInt(quantityInput.value);
-        quantityInput.value = quantity + 1;
-        updateTotalPrice(); // Update total price when quantity changes
-        updateBookQuantity(); // Update book quantity
-    });
-
-    document.getElementById("decrement").addEventListener("click", function() {
-        var quantityInput = document.getElementById("quantity");
-        var quantity = parseInt(quantityInput.value);
-        if (quantity > 1) {
-            quantityInput.value = quantity - 1;
+    <script>
+       document.getElementById("increment").addEventListener("click", function () {
+            var quantityInput = document.getElementById("quantity");
+            var quantity = parseInt(quantityInput.value);
+            quantityInput.value = quantity + 1;
             updateTotalPrice(); // Update total price when quantity changes
             updateBookQuantity(); // Update book quantity
-        }
-    });
+        });
 
-    document.getElementById("quantity").addEventListener("input", function() {
-        updateTotalPrice(); // Update total price when quantity changes
-        updateBookQuantity(); // Update book quantity
-    });
+        document.getElementById("decrement").addEventListener("click", function () {
+            var quantityInput = document.getElementById("quantity");
+            var quantity = parseInt(quantityInput.value);
+            if (quantity > 1) {
+                quantityInput.value = quantity - 1;
+                updateTotalPrice(); // Update total price when quantity changes
+                updateBookQuantity(); // Update book quantity
+            }
+        });
 
+        document.getElementById("quantity").addEventListener("input", function () {
+            updateTotalPrice(); // Update total price when quantity changes
+            updateBookQuantity(); // Update book quantity
+        });
 
-    function updateTotalPrice() {
-        var quantity = parseInt(document.getElementById("quantity").value);
-        var bookPrice = 10; // Assuming the book price is always 10 Euro
-        var country = document.getElementById("country").value;
-        var shippingPrice;
+        document.getElementById("country").addEventListener("change", function () {
+            updateTotalPrice(); // Update total price when country changes
+        });
 
-        // Set shipping price based on the selected country
-        switch (country) {
-            case "Germany":
-            case "Denmark":
-                shippingPrice = 10;
-                break;
-            case "Sweden":
-            case "Switzerland":
-            case "Turkey":
-            case "United Kingdom":
-            case "United States":
-            case "Norway":
-            case "Finland":
-                shippingPrice = 14;
-                break;
-            default:
-                shippingPrice = 12;
-                break;
-        }
-
-        var totalPrice = (quantity * bookPrice) + shippingPrice;
-        document.getElementById("totalPrice").textContent = "Total Price: " + totalPrice + " Euro";
-    }
-
-    function updateBookQuantity() {
-        var quantity = parseInt(document.getElementById("quantity").value);
-        document.getElementById("bookQuantity").textContent = quantity + " Book(s)";
-    }
-
-    document.getElementById("country").addEventListener("change", function() {
-        updateTotalPrice(); // Update total price when country changes
-    });
-
-    // Initialize PayPal Button
-    paypal.Buttons({
-        createOrder: function(data, actions) {
-            // This function sets up the details of the transaction
+        function updateTotalPrice() {
             var quantity = parseInt(document.getElementById("quantity").value);
-            var bookPrice = 10; // Assuming the book price is always 10 Euro
-            var country = document.getElementById("country").value;
-            var shippingPrice;
+            var bookPrice = 10; // Book price
+            var shippingPrice = calculateShipping(); // Calculate shipping based on country
+            var totalPrice = quantity * bookPrice + shippingPrice;
+            document.getElementById("totalPrice").textContent = "Total Price: " + totalPrice + " Euro";
+        }
 
-            // Set shipping price based on the selected country
+        function calculateShipping() {
+            var country = document.getElementById("country").value;
             switch (country) {
                 case "Germany":
                 case "Denmark":
-                    shippingPrice = 10;
-                    break;
+                    return 10;
                 case "Sweden":
                 case "Switzerland":
                 case "Turkey":
@@ -201,34 +164,42 @@
                 case "United States":
                 case "Norway":
                 case "Finland":
-                    shippingPrice = 14;
-                    break;
+                    return 14;
                 default:
-                    shippingPrice = 12;
-                    break;
+                    return 12;
             }
-
-            var totalPrice = (quantity * bookPrice) + shippingPrice;
-
-            // Return the details for the transaction
-            return actions.order.create({
-                purchase_units: [{
-                    amount: {
-                        value: totalPrice.toString(), // Convert to string
-                        currency_code: 'EUR' // Set currency code
-                    }
-                }]
-            });
-        },
-        onApprove: function(data, actions) {
-            // This function captures the funds from the transaction
-            return actions.order.capture().then(function(details) {
-                // Call your backend to save the transaction details if needed
-                alert('Transaction completed by ' + details.payer.name.given_name);
-            });
         }
-    }).render('#paypal-button');
-</script>
+
+        function updateBookQuantity() {
+            var quantity = parseInt(document.getElementById("quantity").value);
+            document.getElementById("bookQuantity").textContent = quantity + " Book(s)";
+        }
+
+        // Initialize PayPal Button
+        paypal.Buttons({
+            createOrder: function(data, actions) {
+                var quantity = parseInt(document.getElementById("quantity").value);
+                var bookPrice = 10; // Assuming the book price is always 10 Euro
+                var shippingPrice = calculateShipping();
+                var totalPrice = quantity * bookPrice + shippingPrice;
+
+                return actions.order.create({
+                    purchase_units: [{
+                        amount: {
+                            value: totalPrice.toString(),
+                            currency_code: 'EUR'
+                        }
+                    }]
+                });
+            },
+            onApprove: function(data, actions) {
+                return actions.order.capture().then(function(details) {
+                    alert('Transaction completed by ' + details.payer.name.given_name);
+                });
+            }
+        }).render('#paypal-button-container'); // Render the PayPal button into this container
+    </script>
+    
 
 </body>
 </html>
