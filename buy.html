@@ -154,7 +154,7 @@
             switch (country) {
                 case "Germany":
                 case "Denmark":
-                    return 10;
+                    return 0.01;
                 case "Sweden":
                 case "Switzerland":
                 case "Turkey":
@@ -177,7 +177,7 @@
         paypal.Buttons({
             createOrder: function(data, actions) {
                 var quantity = parseInt(document.getElementById("quantity").value);
-                var bookPrice = 10; // Assuming the book price is always 10 Euro
+                var bookPrice = 0.01; // Assuming the book price is always 10 Euro
                 var shippingPrice = calculateShipping();
                 var totalPrice = quantity * bookPrice + shippingPrice;
 
