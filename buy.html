@@ -143,7 +143,7 @@
 
         function updateTotalPrice() {
             var quantity = parseInt(document.getElementById("quantity").value);
-            var bookPrice = 10; // Book price
+            var bookPrice = 0.01; // Book price
             var shippingPrice = calculateShipping(); // Calculate shipping based on country
             var totalPrice = quantity * bookPrice + shippingPrice;
             document.getElementById("totalPrice").textContent = "Total Price: " + totalPrice + " Euro";
