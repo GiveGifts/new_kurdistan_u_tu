@@ -5,8 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-	
-    <title>كردستان و أنت : الرئيسية</title>
+
 	
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/icon" href="assets/images/favicon.ico"/>
@@ -40,71 +39,28 @@
 
   <body>
 
-	<!-- Start Header -->
-	<header id="mu-header" class="" role="banner">
-		<div class="container">
-			<nav class="navbar navbar-default mu-navbar">
-			  	<div class="container-fluid">
-				    <!-- Brand and toggle get grouped for better mobile display -->
-				    <div class="navbar-header">
-				      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-				        <span class="sr-only">Toggle navigation</span>
-				        <span class="icon-bar"></span>
-				        <span class="icon-bar"></span>
-				        <span class="icon-bar"></span>
-				      </button>
-
-				      <!-- Text Logo -->
-				      <a class="navbar-brand" href="index.html"><i class="fa fa-book" aria-hidden="true"></i> كردستان و أنت</a>
-
-				      <!-- Image Logo -->
-				      <!-- <a class="navbar-brand" href="index.html"><img src="assets/images/logo.png"></a> -->
-
-
-				    </div>
-
-				    <!-- Collect the nav links, forms, and other content for toggling -->
-				    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-				      	<ul class="nav navbar-nav mu-menu navbar-right">
-					        <li><a href="#">الرئيسية</a></li>
-					        <li><a href="#mu-book-overview">لمحة عن الكتاب</a></li>
-							<li><a href="#mu-counter">أحصائيات عن الكتاب</a></li>
-							<li><a href="#mu-testimonials">بعض اراء القارئين</a></li>
-					        <li><a href="#mu-author">عن الكاتب</a></li>
-							<li><a href="#mu-author">لأستفسار أو الشراء	</a></li>
-				            <li><a href="#mu-contact">أتصل بنا</a></li>
-				      	</ul>
-				    </div><!-- /.navbar-collapse -->
-			  	</div><!-- /.container-fluid -->
-			</nav>
-		</div>
-	</header>
-	<!-- End Header -->
-    
-	
-	<!-- Start Featured Slider -->
-	<!--<img src="assets/images/ebook.png" alt="Ebook img">-->
 	<section id="mu-hero">
-		<div class="container">
-			<div class="row">
-
-				<div class="col-md-6 col-sm-6 col-sm-push-6">
-					
-						<body>
-							<div class="book3d-container">
-								<div class="book3d">
-									<img src="assets/images/cover_kurdi.jpg" alt="">
-								</div>
-							</div>
-						</body>
-						
-					
-				</div>
-
-				
-
-			</div>
-		</div>
+		<h1>Thank You!</h1>
+		<p id="customMessage"></p>
+	
+		<script>
+			function getParameterByName(name, url = window.location.href) {
+				name = name.replace(/[\[\]]/g, '\\$&');
+				var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+					results = regex.exec(url);
+				if (!results) return null;
+				if (!results[2]) return '';
+				return decodeURIComponent(results[2].replace(/\+/g, ' '));
+			}
+	
+			const buyerName = getParameterByName('name');
+			const messageElement = document.getElementById('customMessage');
+			if (buyerName) {
+				messageElement.innerText = `Dear ${buyerName}, thank you for purchasing the book. Your order is on the way!`;
+			} else {
+				messageElement.innerText = "Thank you for your purchase. Your order is on the way!";
+			}
+		</script>
 	</section>
 
 	<section id="mu-author">
@@ -153,11 +109,7 @@
 		</div>
 	</section>
 	
-	<!-- Start Featured Slider -->
-	
-	<!-- Start main content -->
 
-	<main role="main">
 
 	
 

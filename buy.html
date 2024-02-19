@@ -201,6 +201,8 @@
     return actions.order.capture().then(async function(details) {
         alert('Transaction completed by ' + details.payer.name.given_name);
         // After payment is confirmed, send shipping information to Supabase
+        const fullName = encodeURIComponent(details.payer.name.given_name + " " + details.payer.name.surname);
+        window.location.href = `thanks.html?name=${fullName}`;
         const shippingInfo = {
             full_name: document.getElementById("fullName").value,
             country: document.getElementById("country").value,
@@ -210,6 +212,7 @@
             city: document.getElementById("city").value,
             email: document.getElementById("email").value,
             phone: document.getElementById("phone").value
+            
         };
 
         const { data, error } = await supabase
@@ -221,6 +224,7 @@
         } else {
             console.log('Shipping info saved:', data);
             window.location.href = 'thanks.html'
+            
         }
     });
 }
