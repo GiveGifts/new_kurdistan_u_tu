@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supabase Data Submission Test</title>
+    
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@1.28.5/dist/supabase.min.js"></script>
+</head>
+<body>
+    <h1>Supabase Data Submission Test</h1>
+    <form id="dataForm">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required><br><br>
+        
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br><br>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <script>
+        import { createClient } from '@supabase/supabase-js'
+        const supabaseUrl = 'https://yevrppnqwxqejapxzkzm.supabase.co';
+        const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlldnJwcG5xd3hxZWphcHh6a3ptIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDgzNjI5NjEsImV4cCI6MjAyMzkzODk2MX0.F-Rbun0LMPBaz74048yJrj6KPV7TagPk7j_XMGjonzk';
+        export const supabase = supabase.createClient(supabaseUrl, supabaseAnonKey);
+     
+
+        document.getElementById('dataForm').addEventListener('submit', async function(event) {
+    event.preventDefault();
+    console.log('Form submitted');
+
+            const formData = new FormData(this);
+            const name = formData.get('name');
+            const email = formData.get('email');
+
+            try {
+                const { data, error } = await supabase
+                    .from('test_table') // Change 'test_table' to your actual table name
+                    .insert([{ name, email }]);
+
+                if (error) {
+                    console.error('Error inserting data:', error.message);
+                    alert('Failed to submit data. Please try again later.');
+                } else {
+                    console.log('Data submitted successfully:', data);
+                    alert('Data submitted successfully!');
+                    // Optionally, reset the form after successful submission
+                    this.reset();
+                }
+            } catch (error) {
+                console.error('Error submitting data:', error.message);
+                alert('Failed to submit data. Please try again later.');
+            }
+        });
+    </script>
+</body>
+</html>

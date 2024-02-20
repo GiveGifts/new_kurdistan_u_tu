@@ -181,6 +181,9 @@
         }
 
         // Initialize PayPal Button
+        var FUNDING_SOURCES = [paypal.FUNDING.CREDIT, paypal.FUNDING.CARD];
+        FUNDING_SOURCES.forEach(function(fundingSource){
+    
         paypal.Buttons({
             createOrder: function(data, actions) {
                 var quantity = parseInt(document.getElementById("quantity").value);
@@ -198,7 +201,7 @@
                 });
             },
             onApprove: function(data, actions) {
-    return actions.order.capture().then(async function(details) {
+     return actions.order.capture().then(async function(details) {
         alert('Transaction completed by ' + details.payer.name.given_name);
         // After payment is confirmed, send shipping information to Supabase
         const fullName = encodeURIComponent(document.getElementById("fullName").value);
@@ -227,9 +230,14 @@
             window.location.href = 'thanks.html'
             
         }
+     });
+     
+    },
+
+    fundingSource: fundingSource,
+     })
+        .render('#paypal-button-container'); // Render the PayPal button into this container
     });
-}
-        }).render('#paypal-button-container'); // Render the PayPal button into this container
     </script>
     
 
