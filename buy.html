@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,7 +19,7 @@
             <div class="product-info">
                 <img src="product_image.png" alt="Product Image" class="product-image">
                 <div class="product-quantity">
-                    <label for="quantity" >:عدد الكتب المطلوبة</label>
+                    <label for="quantity" >عدد الكتب المطلوبة</label>
                     <div class="quantity-input">
                         <button type="button" class="quantity-btn" id="decrement">-</button>
                         <input type="number" id="quantity" name="quantity" value="1" min="1" required>
@@ -26,7 +27,7 @@
                     </div>
                 </div>
             </div>
-            <h3>معلومات الشحن</h3>
+            <h1>معلومات الشحن</h1>
 
     
 
@@ -80,7 +81,11 @@
             </div>
 
             <!-- PayPal Button -->
+           
+                <p class="text-with-border">اضغط هنا لتعبئة معلومات الشحن والدفع</p>
+                <img src="aroow.png"  class="aroow-image">
             <div id="paypal-button-container"></div>
+            
 
         </form>
     </div>
@@ -166,8 +171,7 @@
             },
             onApprove: function(data, actions) {
                 return actions.order.capture().then(function(details) {
-                    alert('Transaction completed by ' + details.payer.name.given_name);
-                    // Redirect to a "thank you" page or display a thank you message
+                    window.location.href = 'thanks.html' + encodeURIComponent(details.payer.name.given_name);;
                 });
             },
             fundingSource: fundingSource,

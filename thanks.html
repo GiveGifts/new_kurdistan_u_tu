@@ -1,48 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-
-	
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/icon" href="assets/images/favicon.ico"/>
-    <!-- Font Awesome -->
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
     <!-- Bootstrap -->
     <link href="assets/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Slick slider -->
-    <link href="assets/css/slick.css" rel="stylesheet">
-    <!-- Theme color -->
-    <link id="switcher" href="assets/css/theme-color/default-theme.css" rel="stylesheet">
-
     <!-- Main Style -->
     <link href="style.css" rel="stylesheet">
-
-    <!-- Fonts -->
-
-    <!-- Open Sans for body font -->
-	<link href="https://fonts.googleapis.com/css?family=Amiri&display=swap" rel="stylesheet">
-    <!-- Lato for Title -->
-
-
-	
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-  </head>
-
-  <body>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Amiri&display=swap" rel="stylesheet">
+    <style>
+        body, h1, p, a {
+            text-align: center; /* Center text */
+        }
+        .container, .row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .mu-author-info, .contact-buttons {
+            margin: 0 auto;
+        }
+        .whatsapp-button {
+			margin-right: 50px;
+			width: 250px;
+            display: inline-block; /* For centering inline elements like links */
+			margin-top: -40px; /* Adjust the value as needed */
+        }
+		.subtext {
+            font-size: 0.8em; /* Adjust subtext size */
+            color: #000000; /* Subtext color */
+            margin-top: 10px; /* Space between main text and subtext */
+        }
+		.instagram-wrapper {
+    position: relative;
+    top: -30px; /* Adjust the value as needed */
+}
+    </style>
+</head>
+<body>
 
 	<section id="mu-hero">
-		<h1>Thank You!</h1>
-		<p id="customMessage"></p>
-	
+		<h1 id="customMessage">شكرا </h1><br>
+		<p class="subtext">شكرا لك لأنك تقرأ</p>
+		<p class="subtext">شكرا لك لأنك تدعم</p>
+		<p class="subtext">شكرا لك لأنك تحافظ على اللغة الكردية</p>
+		<p class="subtext">شكرا لك لأنك قمت بشراء الكتاب </p><br>
+		<p class="subtext">تم تسليم طلبك بنجاح وسيتم الشحن في أقرب وقت </p>
+		<p class="subtext">سيكون من الجميل اذا قمت بمتابعتنا على الأنستاغرام </p>
+		<p class="subtext">وتابعت اخر الأخبار والتطورات </p>
+		<p>&nbsp;</p> 
+		<p class="subtext">للمتابعة أضغط هنا </p>
 		<script>
 			function getParameterByName(name, url = window.location.href) {
 				name = name.replace(/[\[\]]/g, '\\$&');
@@ -56,63 +66,47 @@
 			const buyerName = getParameterByName('name');
 			const messageElement = document.getElementById('customMessage');
 			if (buyerName) {
-				messageElement.innerText = `Dear ${buyerName}, thank you for purchasing the book. Your order is on the way!`;
+				messageElement.innerText = `شكرا , ${buyerName}`;
 			} else {
-				messageElement.innerText = "Thank you for your purchase. Your order is on the way!";
+				messageElement.innerText = "شكرا ";
 			}
 		</script>
 	</section>
 
-	<section id="mu-author">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12">
-					<div class="mu-author-area">
-	
+<section id="mu-author">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                
 					
-	
-						<!-- Start Author Content -->
-						<div class="mu-author-content">
-							<div class="row">
-								<div class="col-md-6">
-									
-								</div>
-								<div class="col-md-6">
-									<div class="mu-author-info">
-										
-										<div class="contact-buttons">
-											
-											
-	 
-											<a onclick="redirectToWhatsApp('buy.html')" target="_blank" class="whatsapp-button">
-												<img src="assets/images/arabic_flag.png" alt="WhatsApp Icon">للشراء
-											</a>
-											
-										 
-											<script>
-											   function redirectToWhatsApp(url) {
-												  window.location.href = url;
-											   }
-											</script>
-										</div>
+                    <div class="mu-author-content">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <!-- Content can be added here -->
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mu-author-info">
+                                    <div class="contact-buttons">
+										<div class="instagram-wrapper">
+										<a href="https://www.instagram.com/kurdistan_u_tu/" target="_blank" class="whatsapp-button">
+											<img src="assets/images/insta_logo.png" alt="Instagram Icon">Instagram
+										</a>
 									</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- End Author Content -->
-						
-	
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-	
+                                        <script>
+                                            function redirectToWhatsApp(url) {
+                                                window.location.href = url;
+                                            }
+                                        </script>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
-
-	
-
-
-  </body>
+</body>
 </html>

@@ -1,13 +1,16 @@
 .container {
-    max-width: 600px;
+    max-width: 100%;
     margin: auto;
     padding: 50px;
     background-color: #5e5e5e;
-    border-radius: 0px;
-    box-shadow: 0 0 0px rgba(0, 0, 0, 0.1);
     text-align: center;
+    
 }
-
+.text-with-border {
+    color: rgb(255, 255, 255); /* Text color */
+    font-family: Arial, sans-serif;
+    font-size: 19px;
+}
 .price-info {
     display: block;
     margin: 40px auto 20px; /* Top and bottom margins with auto for horizontal centering */
@@ -70,17 +73,24 @@
     margin-bottom: 20px;
     
 }
+.aroow-image {
+    
+    margin-top: -10px;
+    margin-bottom: 10px;
+    width: 35px; /* Width of the icon */
+    height: 35px; /* Height of the icon */
+}
 
 .product-image {
     width: 80px;
     height: auto;
     margin-right: 40px;
-    margin-left: 10px;
+    margin-left: 30px;
 }
 
 .product-quantity {
     flex-grow: 1;
-    margin-right: 20px; /* Added */
+    margin-right: 70px; /* Added */
 }
 
 .quantity-input {
