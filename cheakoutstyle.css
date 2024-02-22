@@ -10,26 +10,55 @@
 
 .price-info {
     display: block;
-    margin-top: 40px;
-    margin-left: 30px;
-    width: 80%;
-    padding: 2px;
-    border: 1px solid #ccc;
+    margin: 40px auto 20px; /* Top and bottom margins with auto for horizontal centering */
+    width: 100%;
+    height: 200%;
+    padding-top: 40px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 5px;
+    border: 4px solid #000000;
     border-radius: 13px; /* Adjust border radius to match other form elements */
     background-color: #fff;
     font-size: 16px;
-    margin-bottom: 20px;
-    appearance: none;
-    
+    position: relative;
 }
+.price-info::before {
+    content: "";
+    position: absolute;
+    top: 3px; /* Adjust based on the size of your icon */
+    left: 30%;
+    transform: translateX(-50%); /* Center the icon */
+    width: 35px; /* Width of the icon */
+    height: 31px; /* Height of the icon */
+    background-image: url('shopping-cart-icon.png');
+    background-size: cover;
+}
+
+.price-info::after {
+    content: "السلة";
+    position: absolute;
+    top: 8px; /* Adjust based on the size of your icon */
+    left: 60%;
+    transform: translateX(-40%); /* Center the text */
+    font-family: Arial, sans-serif; /* Font family for the text */
+    font-size: 30px; /* Font size for the text */
+    color: black; /* Color of the text */
+}
+
+
 .book-quantity {
     margin-top: 10px;
     margin-bottom: 10px;
+    font-family: Arial, sans-serif;
+    font-size: 18px;
 }
 .shipping-price, 
 .total-price {
     margin-top: 10px;
     margin-bottom: 10px;
+    font-family: Arial, sans-serif;
+    font-size: 18px;
 }
 
 
@@ -45,8 +74,8 @@
 .product-image {
     width: 80px;
     height: auto;
-    margin-right: 20px;
-    margin-left: 20px;
+    margin-right: 40px;
+    margin-left: 10px;
 }
 
 .product-quantity {
@@ -78,11 +107,12 @@
 }
 
 .form-group {
-    margin-bottom: 15px;
+    margin: auto auto auto; /* Top and bottom margins with auto for horizontal centering */
 }
 
 label {
     display: block;
+    margin: auto auto auto;
     font-weight: bold;
     margin-bottom: 5px;
 }
