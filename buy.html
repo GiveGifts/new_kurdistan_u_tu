@@ -121,7 +121,7 @@
 
         function updateTotalPrice() {
             var quantity = parseInt(document.getElementById("quantity").value);
-            var bookPrice = 20; // Book price
+            var bookPrice = 0.01; // Book price
             var shippingPrice = calculateShipping(); // Calculate shipping based on country
             var totalPrice = quantity * bookPrice + shippingPrice;
             document.getElementById("totalPrice").textContent = totalPrice + " Euro" + ": السعر الكلي مع الشحن";
@@ -132,7 +132,7 @@
             switch (country) {
                 case "Germany":
                 case "Denmark":
-                    return 10;
+                    return 0.01;
                 case "Sweden":
                 case "Switzerland":
                 case "Turkey":
