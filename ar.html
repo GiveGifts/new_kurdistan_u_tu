@@ -112,6 +112,7 @@
 								let sensitivity = 0.5; // Initial sensitivity value
 								let lastTouchTime = 0;
 								let lastTouchX = 0;
+								let minSpeedThreshold = 0.01; // Adjust as needed
 							
 								// Add event listeners for touch events
 								book.addEventListener("touchstart", handleTouchStart);
@@ -134,16 +135,14 @@
 									let deltaX = touchX - previousTouchX;
 									let speed = Math.abs(deltaX / deltaTime); // Speed in pixels per millisecond
 							
-									sensitivity = Math.max(0.1, Math.min(3, speed)); // Adjust sensitivity based on speed
-							
 									// Calculate the remaining rotation needed to reach 360 degrees
 									let remainingRotation = 360 - Math.abs(rotationAngle % 360);
 							
-									// Calculate a deceleration factor based on the remaining rotation
-									let decelerationFactor = Math.max(0.1, remainingRotation / 180);
+									// Calculate a deceleration factor based on the remaining rotation and speed
+									let decelerationFactor = Math.max(0.1, Math.min(1.5, remainingRotation / 180) * (1 + speed));
 							
 									// Adjust sensitivity based on the deceleration factor
-									sensitivity *= decelerationFactor;
+									sensitivity = Math.max(0.1, Math.min(3, speed)) * decelerationFactor;
 							
 									rotationAngle += deltaX * sensitivity;
 									rotationAngle %= 360; // Ensure rotation stays within 360 degrees
@@ -152,13 +151,19 @@
 									previousTouchX = touchX;
 									lastTouchTime = event.timeStamp;
 									event.preventDefault(); // Prevent default touch behavior
+							
+									// Stop rotation entirely if speed drops below the threshold
+									if (speed < minSpeedThreshold && Math.abs(deltaX) < 1) {
+										isUserRotated = false;
+									}
 								}
 							
 								function handleTouchEnd() {
 									isUserRotated = false;
 								}
 							});
-							</script>
+						</script>
+						
 							
 						
 					
