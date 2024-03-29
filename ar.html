@@ -109,7 +109,9 @@
 								let isUserRotated = false;
 								let previousTouchX = 0;
 								let rotationAngle = 0;
-								let sensitivity = 0.5; // Adjust this value to control rotation sensitivity
+								let sensitivity = 0.5; // Initial sensitivity value
+								let lastTouchTime = 0;
+								let lastTouchX = 0;
 							
 								// Add event listeners for touch events
 								book.addEventListener("touchstart", handleTouchStart);
@@ -128,13 +130,17 @@
 									if (!isUserRotated) return;
 							
 									let touchX = event.touches[0].clientX;
-									let deltaX = touchX - previousTouchX; // Change here
+									let deltaTime = event.timeStamp - lastTouchTime;
+									let deltaX = touchX - previousTouchX;
+									let speed = Math.abs(deltaX / deltaTime); // Speed in pixels per millisecond
 							
+									sensitivity = Math.max(0.1, Math.min(3, speed)); // Adjust sensitivity based on speed
 									rotationAngle += deltaX * sensitivity;
 									rotationAngle %= 360; // Ensure rotation stays within 360 degrees
 							
 									book.style.transform = `rotateY(${rotationAngle}deg)`;
 									previousTouchX = touchX;
+									lastTouchTime = event.timeStamp;
 									event.preventDefault(); // Prevent default touch behavior
 								}
 							
