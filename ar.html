@@ -121,6 +121,7 @@
 									previousTouchX = event.touches[0].clientX;
 									// Stop the rotation animation completely when touch starts
 									book.style.animation = "none";
+									event.preventDefault(); // Prevent default touch behavior
 								}
 							
 								function handleTouchMove(event) {
@@ -134,6 +135,7 @@
 							
 									book.style.transform = `rotateY(${rotationAngle}deg)`;
 									previousTouchX = touchX;
+									event.preventDefault(); // Prevent default touch behavior
 								}
 							
 								function handleTouchEnd() {
