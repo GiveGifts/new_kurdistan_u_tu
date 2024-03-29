@@ -104,39 +104,38 @@
  
 						<script>
 							document.addEventListener("DOMContentLoaded", function() {
-    const book = document.getElementById("book");
-    let isUserRotated = false;
-    let previousTouchX = 0;
-    let rotationAngle = 0;
-
-    book.addEventListener("touchstart", handleTouchStart);
-    book.addEventListener("touchmove", handleTouchMove);
-    book.addEventListener("touchend", handleTouchEnd);
-
-    function handleTouchStart(event) {
-        isUserRotated = true;
-        previousTouchX = event.touches[0].clientX;
-    }
-
-    function handleTouchMove(event) {
-        if (!isUserRotated) return;
-
-        let touchX = event.touches[0].clientX;
-        let deltaX = previousTouchX - touchX;
-        let sensitivity = 1.5; // Adjust this value to control rotation sensitivity
-
-        rotationAngle += deltaX * sensitivity;
-        rotationAngle = Math.min(Math.max(rotationAngle, 0), 360); // Allow rotation between 0 and 360 degrees
-
-        book.style.transform = `rotateY(${-rotationAngle}deg)`;
-        previousTouchX = touchX;
-    }
-
-    function handleTouchEnd() {
-        isUserRotated = false;
-    }
-});
-
+								const book = document.getElementById("book");
+								let isUserRotated = false;
+								let previousTouchX = 0;
+								let rotationAngle = 0;
+					
+								book.addEventListener("touchstart", handleTouchStart);
+								book.addEventListener("touchmove", handleTouchMove);
+								book.addEventListener("touchend", handleTouchEnd);
+					
+								function handleTouchStart(event) {
+									isUserRotated = true;
+									previousTouchX = event.touches[0].clientX;
+								}
+					
+								function handleTouchMove(event) {
+									if (!isUserRotated) return;
+					
+									let touchX = event.touches[0].clientX;
+									let deltaX = previousTouchX - touchX;
+									let sensitivity = 3; // Adjust this value to control rotation sensitivity
+					
+									rotationAngle += deltaX * sensitivity;
+									rotationAngle %= 360; // Allow rotation of multiple circles
+					
+									book.style.transform = `rotateY(${-rotationAngle}deg)`;
+									previousTouchX = touchX;
+								}
+					
+								function handleTouchEnd() {
+									isUserRotated = false;
+								}
+							});
 						</script>
 						
 					

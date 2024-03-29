@@ -190,7 +190,7 @@ button:focus {
     height: 300рх;
     position: relative;
     transform-style: preserve-3d;
-    transform: rotatey(-150deg);
+    transform: rotatey(-180deg);
     transition: 3s ease;
 
 }
@@ -199,13 +199,13 @@ button:focus {
     height: 300рх;
     position: relative;
     transform-style: preserve-3d;
-    transform: rotatey(-150deg);
-    transition: 3s ease;
+    transform: rotatey(-180deg);
+    transition: 1s ease;
 
 }
 
 .book3d:hover{
-    transform: rotateY(-150deg);
+    transform: rotateY(-180deg);
 }
  .book3d > :first-child{
     position: relative;
@@ -272,47 +272,7 @@ box-shadow: 30px 30px 80px rgb(0, 0, 0);
 }
 
 
-.slide_right{
-	width: 150px ;
-    height: 210px ;
-	margin-top: -17%;
-	margin-bottom: 10%;
-	animation: slideRight 6s ease-in;
-	box-shadow: 30px 10px 40px rgb(0, 0, 0);;
-}
 
-
-@keyframes slideRight{
-	0%{
-		transform: translateX(550px);
-	}
-
-	100%{
-		transform: skew(0deg);
-	}
-
-}
-	
-.slide_left{
-	width: 150px ;
-    height: 210px ;
-	margin-top: -17%;
-	margin-bottom: 10%;
-	animation: slideLeft 6s ease-in;
-	box-shadow: 30px 10px 40px rgb(0, 0, 0);;
-}
-
-
-@keyframes slideLeft{
-	0%{
-		transform: translateX(-550px);
-	}
-
-	100%{
-		transform: skew(0deg);
-	}
-
-}
 	
 
 
