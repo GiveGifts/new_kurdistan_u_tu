@@ -135,6 +135,11 @@
 									let speed = Math.abs(deltaX / deltaTime); // Speed in pixels per millisecond
 							
 									sensitivity = Math.max(0.1, Math.min(3, speed)); // Adjust sensitivity based on speed
+							
+									// Adjust sensitivity based on rotation progress
+									let remainingRotation = Math.abs(360 - rotationAngle % 360);
+									sensitivity *= Math.min(1, Math.max(0.1, remainingRotation / 90));
+							
 									rotationAngle += deltaX * sensitivity;
 									rotationAngle %= 360; // Ensure rotation stays within 360 degrees
 							
