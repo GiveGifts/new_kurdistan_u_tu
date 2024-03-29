@@ -183,6 +183,7 @@ button:focus {
     justify-content: center;
     height: 450px;;
     perspective: 600px;
+	margin-bottom: 60px;
 }
 .book3d{
     width: 200px;
@@ -235,7 +236,7 @@ left: 0;
 width: 200px;
 height: 285px;
 transform:translateZ(-30px) scaleX(-1);
-background-image: url(assets/images/cover_arabic.jpg);
+background-image: url(assets/images/cover_arabic.png);
 background-repeat: no-repeat;
 background-size: cover;
 border-radius: Opx 2px 2px Opx;
@@ -551,7 +552,7 @@ box-shadow: 30px 30px 80px rgb(0, 0, 0);
 	float: left;
 
 	width: 100%;
-	margin-bottom: 10px;
+	margin-bottom: 125px;
 }
 
 .mu-counter-area h2 {
@@ -631,6 +632,7 @@ box-shadow: 30px 30px 80px rgb(0, 0, 0);
 .mu-heading-title {
 	color: #000000;
 	margin-bottom: 15px;
+	margin-top: -110px;
 	position: relative;
 }
 
@@ -657,7 +659,10 @@ box-shadow: 30px 30px 80px rgb(0, 0, 0);
 	width: 100%;
 	background: #5e5e5e;
 	padding: 20px 10px;
-	margin: 10px 0 15px;
+	margin: 10px 10px 15px;
+	margin-top: -60px;
+	
+	
 }
 
 .mu-book-overview-icon-box {
@@ -797,6 +802,7 @@ box-shadow: 30px 30px 80px rgb(0, 0, 0);
 	float: left;
 	padding: 20px 0 175px;
 	width: 100%;
+	margin-bottom: 50px;
 }
 
 .mu-testimonials-area h2 {
@@ -864,30 +870,33 @@ box-shadow: 30px 30px 80px rgb(0, 0, 0);
 
 .mu-arrow-container {
     position: relative;
-    float: right;
-    margin-top: -150px; /* Adjust as needed */
+    margin-top: 200px; /* Adjust as needed */
+    text-align: center; /* Center the arrows horizontally */
+
 }
 
 .mu-arrow-left,
 .mu-arrow-right {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
     width: 0;
     height: 0;
     border-top: 10px solid transparent;
     border-bottom: 10px solid transparent;
-    
-	animation: blink 3s infinite; /* Apply the blinking animation */
+    animation: blink 3s infinite; /* Apply the blinking animation */
 }
 
 .mu-arrow-left {
-    float: left; /* Align the left arrow on the left side */
+    left: 35px; /* Position the left arrow at the left side */
     border-right: 15px solid #f8f8f8; /* Left arrow color */
-	margin-right: 300px; /* Adjust as needed */
+    margin-right: 10px; /* Adjust as needed */
 }
 
 .mu-arrow-right {
-    float: right; /* Align the right arrow on the right side */
+    right: 35px; /* Position the right arrow at the right side */
     border-left: 15px solid #f8f8f8; /* Right arrow color */
-	margin-right: 65px; /* Adjust as needed */
+    margin-left: 10px; /* Adjust as needed */
 }
 
 @keyframes blink {
@@ -916,7 +925,7 @@ box-shadow: 30px 30px 80px rgb(0, 0, 0);
 	padding: -20px;
     text-align: center;
 	margin-top: -30px;
-	margin-bottom: 40px;
+	margin-bottom: 150px;
 }
 
 .text_h1{
