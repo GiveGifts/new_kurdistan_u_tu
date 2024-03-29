@@ -109,10 +109,10 @@
 								let isUserRotated = false;
 								let previousTouchX = 0;
 								let rotationAngle = 0;
-								let sensitivity = 0.5; // Initial sensitivity value
+								let sensitivity = 0.2; // Initial sensitivity value (adjusted for slower rotation)
 								let lastTouchTime = 0;
 								let lastTouchX = 0;
-								let minSpeedThreshold = 0.01; // Adjust as needed
+								let minSpeedThreshold = 0.05; // Adjust as needed
 							
 								// Add event listeners for touch events
 								book.addEventListener("touchstart", handleTouchStart);
@@ -142,7 +142,7 @@
 									let decelerationFactor = Math.max(0.1, Math.min(1.5, remainingRotation / 180) * (1 + speed));
 							
 									// Adjust sensitivity based on the deceleration factor
-									sensitivity = Math.max(0.1, Math.min(3, speed)) * decelerationFactor;
+									sensitivity = 0.2 * decelerationFactor; // Adjust the base sensitivity as needed
 							
 									rotationAngle += deltaX * sensitivity;
 									rotationAngle %= 360; // Ensure rotation stays within 360 degrees
@@ -163,6 +163,7 @@
 								}
 							});
 						</script>
+						
 						
 							
 						
