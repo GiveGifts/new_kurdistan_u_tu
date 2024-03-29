@@ -255,20 +255,7 @@ box-shadow: 30px 30px 80px rgb(0, 0, 0);
 	box-shadow: 30px 10px 40px rgb(0, 0, 0);;
 }
 
-@keyframes rotateBook {
-    0% { transform: rotateY(0deg); }
-    100% { transform: rotateY(-150deg); }
-}
 
-.book3d {
-    /* Your existing styles */
-    transform-style: preserve-3d;
-    animation: rotateBook 6s linear forwards; /* Rotate the book until 150 degrees */
-}
-
-.book3d:hover {
-    animation-play-state: paused; /* Pause the animation on hover */
-}
 @keyframes slideRight{
 	0%{
 		transform: translateX(550px);
