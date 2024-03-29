@@ -90,13 +90,64 @@
 
 				<div class="col-md-6 col-sm-6 col-sm-push-6">
 					
-						<body>
-							<div class="book3d-container">
-								<div class="book3d">
-									<img src="assets/images/cover_kurdi.jpg" alt="">
-								</div>
+					<body>
+						<div class="book3d-container">
+							<div class="book3d" id="book">
+								<img src="assets/images/cover_kurdi.jpg" alt="">
 							</div>
-						</body>
+						</div>
+					
+						<script>
+							document.addEventListener("DOMContentLoaded", function() {
+								const book = document.getElementById("book");
+								let isUserRotated = false;
+								let startX = 0;
+								let startAngle = 0;
+							
+								book.addEventListener("mousedown", startDrag);
+								book.addEventListener("touchstart", startDrag);
+							
+								function startDrag(event) {
+									isUserRotated = true;
+									startX = event.clientX || event.touches[0].clientX;
+									startAngle = getRotationAngle();
+							
+									document.addEventListener("mousemove", move);
+									document.addEventListener("touchmove", move);
+									document.addEventListener("mouseup", endDrag);
+									document.addEventListener("touchend", endDrag);
+								}
+							
+								function move(event) {
+									if (!isUserRotated) return;
+							
+									let currentX = event.clientX || event.touches[0].clientX;
+									let delta = startX - currentX;
+									let angle = startAngle + delta * 0.3; // Adjust rotation sensitivity
+							
+									angle = Math.min(Math.max(angle, 0), 150); // Clamp rotation between 0 and 150 degrees
+							
+									book.style.transform = `rotateY(${-angle}deg)`;
+								}
+							
+								function endDrag() {
+									if (!isUserRotated) return;
+							
+									document.removeEventListener("mousemove", move);
+									document.removeEventListener("touchmove", move);
+									document.removeEventListener("mouseup", endDrag);
+									document.removeEventListener("touchend", endDrag);
+							
+									isUserRotated = false;
+								}
+							
+								function getRotationAngle() {
+									let style = window.getComputedStyle(book);
+									let matrix = new DOMMatrixReadOnly(style.transform);
+									return -Math.atan2(matrix.m13, matrix.m33) * (180 / Math.PI);
+								}
+							});
+						</script>
 						
 					
 				</div>
@@ -494,6 +545,9 @@
     <!-- Custom js -->
 	<script type="text/javascript" src="assets/js/custom.js"></script>
 
+	
+
+	
 
   </body>
 </html>
