@@ -109,35 +109,39 @@
 								let isUserRotated = false;
 								let previousTouchX = 0;
 								let rotationAngle = 0;
-					
+								let sensitivity = 0.5; // Adjust this value to control rotation sensitivity
+							
+								// Add event listeners for touch events
 								book.addEventListener("touchstart", handleTouchStart);
 								book.addEventListener("touchmove", handleTouchMove);
 								book.addEventListener("touchend", handleTouchEnd);
-					
+							
 								function handleTouchStart(event) {
 									isUserRotated = true;
 									previousTouchX = event.touches[0].clientX;
+									// Stop the rotation animation completely when touch starts
+									book.style.animation = "none";
 								}
-					
+							
 								function handleTouchMove(event) {
 									if (!isUserRotated) return;
-					
+							
 									let touchX = event.touches[0].clientX;
-									let deltaX = previousTouchX - touchX;
-									let sensitivity = 3; // Adjust this value to control rotation sensitivity
-					
+									let deltaX = touchX - previousTouchX; // Change here
+							
 									rotationAngle += deltaX * sensitivity;
-									rotationAngle %= 2500; // Allow rotation of multiple circles
-					
-									book.style.transform = `rotateY(${-rotationAngle}deg)`;
+									rotationAngle %= 360; // Ensure rotation stays within 360 degrees
+							
+									book.style.transform = `rotateY(${rotationAngle}deg)`;
 									previousTouchX = touchX;
 								}
-					
+							
 								function handleTouchEnd() {
 									isUserRotated = false;
 								}
 							});
-						</script>
+							</script>
+							
 						
 					
 				</div>

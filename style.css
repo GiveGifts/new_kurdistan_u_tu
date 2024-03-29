@@ -192,16 +192,17 @@ button:focus {
     height: 300рх;
     position: relative;
     transform-style: preserve-3d;
-    animation: rotateBook 15s infinite;
+	animation: rotateBook 30s ease;
+   
 
 }
 
 @keyframes rotateBook {
     from {
-        transform: rotateY(0deg);
+        transform: rotateY(1deg);
     }
     to {
-        transform: rotateY(320deg);
+        transform: rotateY(590deg);
     }
 }
 
@@ -211,7 +212,6 @@ button:focus {
     height: 300рх;
     position: relative;
     transform-style: preserve-3d;
-    transition: 1s ease;
 
 }
 
