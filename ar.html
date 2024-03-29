@@ -121,7 +121,7 @@
 					
 									let currentX = event.touches[0].clientX;
 									let delta = startX - currentX;
-									let angle = startAngle + delta * 0.3; // Adjust rotation sensitivity
+									let angle = startAngle + delta * 0.6; // Adjust rotation sensitivity for better reach to 150 degrees
 					
 									angle = Math.min(Math.max(angle, 0), 150); // Clamp rotation between 0 and 150 degrees
 					
