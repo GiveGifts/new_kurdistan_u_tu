@@ -192,10 +192,20 @@ button:focus {
     height: 300рх;
     position: relative;
     transform-style: preserve-3d;
-    transform: rotatey(360deg);
-    transition: 15s ease;
+    animation: rotateBook 15s infinite;
 
 }
+
+@keyframes rotateBook {
+    from {
+        transform: rotateY(0deg);
+    }
+    to {
+        transform: rotateY(320deg);
+    }
+}
+
+
 .book3dd{
     width: 200px;
     height: 300рх;
@@ -205,9 +215,7 @@ button:focus {
 
 }
 
-.book3d:hover{
-    animation-play-state: paused; /* Pause the animation on hover */
-}
+
  .book3d > :first-child{
     position: relative;
     top: 0;
@@ -242,7 +250,7 @@ button:focus {
 	position: absolute;
 	top: 370px;
 	bottom: -50px;
-	left: calc(40% - -10px); /* Center horizontally */
+	left: calc(40% - Center); /* Center horizontally */
 	width: 80px;
 	height: auto;
 	z-index: 1;
