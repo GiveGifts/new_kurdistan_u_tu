@@ -126,7 +126,7 @@
 									let sensitivity = 3; // Adjust this value to control rotation sensitivity
 					
 									rotationAngle += deltaX * sensitivity;
-									rotationAngle %= 360; // Allow rotation of multiple circles
+									rotationAngle %= 2500; // Allow rotation of multiple circles
 					
 									book.style.transform = `rotateY(${-rotationAngle}deg)`;
 									previousTouchX = touchX;
