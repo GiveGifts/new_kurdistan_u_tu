@@ -207,6 +207,7 @@ button:focus {
 @keyframes rotateBook {
     0% { transform: rotateY(0deg); }
     100% { transform: rotateY(235deg); }
+	transform:translateZ(0);
 }
 .book3d:hover{
     animation-play-state: paused; /* Pause the animation on hover */
