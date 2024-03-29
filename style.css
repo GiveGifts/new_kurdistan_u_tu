@@ -194,6 +194,15 @@ button:focus {
     transition: 3s ease;
 
 }
+.book3dd{
+    width: 200px;
+    height: 300рх;
+    position: relative;
+    transform-style: preserve-3d;
+    transform: rotatey(-150deg);
+    transition: 3s ease;
+
+}
 
 .book3d:hover{
     transform: rotateY(-150deg);
@@ -202,7 +211,7 @@ button:focus {
     position: relative;
     top: 0;
      Left: 0;
-    background-color: red;
+    background-color: rgb(0, 0, 0);
 	width: 200px;
     height: 300рх;
     transform: translateZ(30px);
@@ -215,17 +224,18 @@ button:focus {
     position: absolute;
     content: '';
 	background-color: blue;
-    Left:0px;
+    Left:13px;
     top:3px;
     transition: 0.1s;
-    width: 55px;
+    width: 31px;
     height: 275px;
-    transform: translateX(167px) rotatey(90deg);
+    transform: translateX(166px) translateZ(13px) rotatey(90deg);
     background: linear-gradient(90deg,#fff 0%, #f9f9f9 5%,#fff 10%, #F9f9f9 15%,
 	#fff 20%, #f9f9f9 25%,#fff 30%, #F9f9f9 35%,
 	#fff 40%, #f9f9f9 45%,#fff 50%, #F9f9f9 55%,
 	#fff 60%, #f9f9f9 65%,#fff 70%, #F9f9f9 75%,
-	#fff 80%, #f9f9f9 85%,#fff 90%, #F9f9f9 95%, #fff 100%)
+	#fff 80%, #f9f9f9 85%,#fff 90%, #F9f9f9 95%, #fff 100%);
+	box-shadow: 30px 30px 80px rgb(0, 0, 0);
 }
 
 .book3d::after{
@@ -235,7 +245,7 @@ top: 0;
 left: 0;
 width: 200px;
 height: 285px;
-transform:translateZ(-30px) scaleX(-1);
+transform:translateZ(-5px) scaleX(-1);
 background-image: url(assets/images/cover_arabic.png);
 background-repeat: no-repeat;
 background-size: cover;
@@ -244,6 +254,22 @@ box-shadow: 30px 30px 80px rgb(0, 0, 0);
 
 }
 
+.book3dd::before {
+    position: absolute;
+    content: '';
+    top: 0;
+    left: 41px; /* Adjust this value as needed */
+    width: 17.3%;
+    height: 100%;
+    transform: translateX(-56.9px) translateZ(-17.5px) rotateY(89deg) scaleX(-1);
+    background-image: url(assets/images/spin_cover.png);
+    background-color: #000;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 0px 2px 2px 0px; /* Adjust this value as needed */
+    animation: spinAnimation 5s linear infinite; /* Adjust timing and animation as needed */
+	box-shadow: 30px 30px 80px rgb(0, 0, 0);
+}
 
 
 .slide_right{
