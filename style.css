@@ -184,14 +184,16 @@ button:focus {
     height: 450px;;
     perspective: 600px;
 	margin-bottom: 60px;
+	
 }
 .book3d{
+	top: -60px;
     width: 200px;
     height: 300рх;
     position: relative;
     transform-style: preserve-3d;
-    transform: rotatey(-180deg);
-    transition: 3s ease;
+    transform: rotatey(220deg);
+    transition: 15s ease;
 
 }
 .book3dd{
@@ -199,13 +201,15 @@ button:focus {
     height: 300рх;
     position: relative;
     transform-style: preserve-3d;
-    transform: rotatey(-180deg);
     transition: 1s ease;
 
 }
-
+@keyframes rotateBook {
+    0% { transform: rotateY(0deg); }
+    100% { transform: rotateY(215deg); }
+}
 .book3d:hover{
-    transform: rotateY(-180deg);
+    animation-play-state: paused; /* Pause the animation on hover */
 }
  .book3d > :first-child{
     position: relative;
@@ -237,7 +241,15 @@ button:focus {
 	#fff 80%, #f9f9f9 85%,#fff 90%, #F9f9f9 95%, #fff 100%);
 	box-shadow: 30px 30px 80px rgb(0, 0, 0);
 }
-
+.vd-indicator {
+	position: absolute;
+	top: 370px;
+	bottom: -50px;
+	left: calc(40% - -10px); /* Center horizontally */
+	width: 80px;
+	height: auto;
+	z-index: 1;
+}
 .book3d::after{
 position: absolute;
 content: ' ';
