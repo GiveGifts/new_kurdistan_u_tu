@@ -98,44 +98,45 @@
 						</div>
 					
 					
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const book = document.getElementById("book");
-            let isUserRotated = false;
-            let startAngle = 0;
-            let previousAngle = 0;
-            let initialTouchX = 0;
-
-            book.addEventListener("touchstart", handleTouchStart);
-            book.addEventListener("touchmove", handleTouchMove);
-            book.addEventListener("touchend", handleTouchEnd);
-
-            function handleTouchStart(event) {
-                isUserRotated = true;
-                initialTouchX = event.touches[0].clientX;
-                startAngle = previousAngle;
-            }
-
-            function handleTouchMove(event) {
-                if (!isUserRotated) return;
-
-                let touchX = event.touches[0].clientX;
-                let deltaX = initialTouchX - touchX;
-                let sensitivity = 0.5; // Adjust this value to control rotation sensitivity
-
-                let angle = startAngle + deltaX * sensitivity;
-
-                angle = Math.min(Math.max(angle, 0), 150); // Clamp rotation between 0 and 150 degrees
-
-                book.style.transform = `rotateY(${-angle}deg)`;
-                previousAngle = angle;
-            }
-
-            function handleTouchEnd() {
-                isUserRotated = false;
-            }
-        });
-    </script>
+ 
+						<script>
+							document.addEventListener("DOMContentLoaded", function() {
+								const book = document.getElementById("book");
+								let isUserRotated = false;
+								let startAngle = 0;
+								let previousAngle = 0;
+								let initialTouchX = 0;
+					
+								book.addEventListener("touchstart", handleTouchStart);
+								book.addEventListener("touchmove", handleTouchMove);
+								book.addEventListener("touchend", handleTouchEnd);
+					
+								function handleTouchStart(event) {
+									isUserRotated = true;
+									initialTouchX = event.touches[0].clientX;
+									startAngle = previousAngle;
+								}
+					
+								function handleTouchMove(event) {
+									if (!isUserRotated) return;
+					
+									let touchX = event.touches[0].clientX;
+									let deltaX = initialTouchX - touchX;
+									let sensitivity = 0.5; // Adjust this value to control rotation sensitivity
+					
+									let angle = startAngle + deltaX * sensitivity;
+					
+									angle = Math.min(Math.max(angle, 0), 150); // Clamp rotation between 0 and 150 degrees
+					
+									book.style.transform = `rotateY(${-angle}deg)`;
+									previousAngle = angle;
+								}
+					
+								function handleTouchEnd() {
+									isUserRotated = false;
+								}
+							});
+						</script>
 						
 					
 				</div>
