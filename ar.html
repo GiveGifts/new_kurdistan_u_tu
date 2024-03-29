@@ -136,9 +136,14 @@
 							
 									sensitivity = Math.max(0.1, Math.min(3, speed)); // Adjust sensitivity based on speed
 							
-									// Adjust sensitivity based on rotation progress
-									let remainingRotation = Math.abs(360 - rotationAngle % 360);
-									sensitivity *= Math.min(1, Math.max(0.1, remainingRotation / 90));
+									// Calculate the remaining rotation needed to reach 360 degrees
+									let remainingRotation = 360 - Math.abs(rotationAngle % 360);
+							
+									// Calculate a deceleration factor based on the remaining rotation
+									let decelerationFactor = Math.max(0.1, remainingRotation / 180);
+							
+									// Adjust sensitivity based on the deceleration factor
+									sensitivity *= decelerationFactor;
 							
 									rotationAngle += deltaX * sensitivity;
 									rotationAngle %= 360; // Ensure rotation stays within 360 degrees
