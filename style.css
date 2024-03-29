@@ -192,7 +192,7 @@ button:focus {
     height: 300рх;
     position: relative;
     transform-style: preserve-3d;
-    transform: rotatey(235deg);
+    transform: rotatey(360deg);
     transition: 15s ease;
 
 }
@@ -204,11 +204,7 @@ button:focus {
     transition: 1s ease;
 
 }
-@keyframes rotateBook {
-    0% { transform: rotateY(0deg); }
-    100% { transform: rotateY(235deg); }
-	transform:translateZ(0);
-}
+
 .book3d:hover{
     animation-play-state: paused; /* Pause the animation on hover */
 }
