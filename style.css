@@ -248,7 +248,7 @@ button:focus {
 }
 .vd-indicator {
 	position: absolute;
-	top: 370px;
+	top: 350px;
 	bottom: -50px;
 	left: calc(40% - Center); /* Center horizontally */
 	width: 80px;
@@ -567,6 +567,7 @@ box-shadow: 30px 30px 80px rgb(0, 0, 0);
 	display: inline;
 	float: left;
 	width: 100%;
+	padding-top: 40px;
 	
 }
 

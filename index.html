@@ -1,38 +1,145 @@
 <!DOCTYPE html>
-<link id="switcher" href="assets/css/theme-color/default-theme.css" rel="stylesheet">
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+	
+    <title>كردستان و أنت : الرئيسية</title>
+	
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/icon" href="assets/images/favicon.ico"/>
+    <!-- Font Awesome -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Slick slider -->
+    <link href="assets/css/slick.css" rel="stylesheet">
+    <!-- Theme color -->
+    <link id="switcher" href="assets/css/theme-color/default-theme.css" rel="stylesheet">
 
-<!-- Main Style -->
-<link href="style.css" rel="stylesheet">
-<html>
+    <!-- Main Style -->
+    <link href="style.css" rel="stylesheet">
+
+    <!-- Fonts -->
+
+    <!-- Open Sans for body font -->
+	<link href="https://fonts.googleapis.com/css?family=Amiri&display=swap" rel="stylesheet">
+    <!-- Lato for Title -->
+
+
+	
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
 <body>
     <section id="mu-hero">
 		<div class="container">
 			<div class="row">
                 <h2  class="text_test"> مرحبا بك </h2>
-                <h2  class="text_test"> Tu bi xêrss hatîn</h2>
                 
-            
+                <h2  class="text_test"> Tu bi xêrss hatîn</h2>
+                <br>
 				<div class="col-md-6 col-sm-6 col-sm-push-6">
 					
-						<body>
-							<div class="book3d-container">
-                                
-								<div class="book3d">
-                                    
-									<img src="assets/images/cover_kurdi.jpg" alt="">
-								</div>
+					<body>
+						<div class="book3d-container">
+							
+							<div class="book3d" id="book">
+								<div class="book3dd" id="book">
+								<img src="assets/images/cover_kurdi.png" alt="">
+							
 							</div>
-						</body>
+							</div>
+						</div>
+					
+					
+ 
+						<script>
+							document.addEventListener("DOMContentLoaded", function() {
+								const book = document.getElementById("book");
+								let isUserRotated = false;
+								let previousTouchX = 0;
+								let rotationAngle = 0;
+								let sensitivity = 0.5; // Initial sensitivity value
+								let lastTouchTime = 0;
+								let lastTouchX = 0;
+								let rotationTimer; // Timer for automatic rotation
+						
+								// Add event listeners for touch events
+								book.addEventListener("touchstart", handleTouchStart);
+								book.addEventListener("touchmove", handleTouchMove);
+								book.addEventListener("touchend", handleTouchEnd);
+						
+								function handleTouchStart(event) {
+									isUserRotated = true;
+									previousTouchX = event.touches[0].clientX;
+									// Stop the rotation animation completely when touch starts
+									book.style.animation = "none";
+									clearTimeout(rotationTimer); // Clear any existing rotation timer
+									event.preventDefault(); // Prevent default touch behavior
+								}
+						
+								function handleTouchMove(event) {
+									if (!isUserRotated) return;
+						
+									let touchX = event.touches[0].clientX;
+									let deltaTime = event.timeStamp - lastTouchTime;
+									let deltaX = touchX - previousTouchX;
+									let speed = Math.abs(deltaX / deltaTime); // Speed in pixels per millisecond
+						
+									// Calculate the remaining rotation needed to reach 360 degrees
+									let remainingRotation = 360 - Math.abs(rotationAngle % 360);
+						
+									// Calculate a deceleration factor based on the remaining rotation and speed
+									let decelerationFactor = Math.max(0.1, Math.min(8, remainingRotation / 180) * (1 + speed));
+						
+									// Adjust sensitivity based on the deceleration factor
+									sensitivity = Math.max(0.1, Math.min(3, speed)) * decelerationFactor;
+						
+									rotationAngle += deltaX * sensitivity;
+									rotationAngle %= 360; // Ensure rotation stays within 360 degrees
+						
+									book.style.transform = `rotateY(${rotationAngle}deg)`;
+									previousTouchX = touchX;
+									lastTouchTime = event.timeStamp;
+									clearTimeout(rotationTimer); // Clear any existing rotation timer
+									event.preventDefault(); // Prevent default touch behavior
+								}
+						
+								function handleTouchEnd() {
+									isUserRotated = false;
+									// Start the rotation timer after 5 seconds of inactivity
+									rotationTimer = setTimeout(autoRotate, 5000);
+								}
+						
+								// Function to automatically rotate the book
+								function autoRotate() {
+									rotationAngle += 0.5; // Adjust the rotation angle increment as needed (slower speed)
+									book.style.transform = `rotateY(${rotationAngle}deg)`;
+									// Continue rotating until the user interacts with the book again
+									rotationTimer = setTimeout(autoRotate, 10); // Adjust the interval as needed
+								}
+							});
+						</script>
+						
+						
+							
 						
 					
 				</div>
-                <h2  class="text_test1"> بأي لغة تريد تصفح الموقع ؟</h2>
-                <h2  class="text_test1"> Bi kîjan zimanî tu dixwaze li malperê bigerin ? </h2>
-                
+
+				
 
 			</div>
 		</div>
-	</section>
+	</section>			
+											
 <section id="mu-author">
     <div class="container">
         <div class="row">
@@ -52,20 +159,22 @@
                                     
                                     <div class="contact-buttons">
                                         
-                                        
+                                        <h2  class="text_test1"> بأي لغة تريد تصفح الموقع ؟</h2>
+                                         <h2  class="text_test1"> Bi kîjan zimanî tu dixwaze li malperê bigerin ? </h2>
  
                                         <a onclick="redirectToWhatsApp('ar.html')" target="_blank" class="whatsapp-button">
                                             <img src="assets/images/arabic_flag.png" alt="WhatsApp Icon">باللغة العربية
                                         </a>
+                                        
                                         <a onclick="redirectToWhatsApp('ar.html')" target="_blank" class="instagram-button">
                                             <img src="assets/images/kurdish_flag.png" alt="Instagram Icon">Bê Zimanê Kurdî
                                         </a>
-                                     
                                         <script>
-                                           function redirectToWhatsApp(url) {
-                                              window.location.href = url;
-                                           }
-                                        </script>
+                                            function redirectToWhatsApp(url) {
+                                               window.location.href = url;
+                                            }
+                                         </script>
+                                       
                                     </div>
                                 </div>
                                 </div>
