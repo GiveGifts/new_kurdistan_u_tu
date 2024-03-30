@@ -183,7 +183,7 @@
         }).render('#paypal-button-container'); // Render the PayPal button into this container
         
     });
-    document.querySelector('#paypal-button-container').addEventListener('click', function() {
+    document.querySelector('#paypal-button-container-' + FUNDING_SOURCES[0]).addEventListener('click', function() {
     setTimeout(function() {
         window.scrollBy({
             top: 100, // Adjust this value as per your requirement
