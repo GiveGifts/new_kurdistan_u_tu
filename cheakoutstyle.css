@@ -30,7 +30,7 @@
     content: "";
     position: absolute;
     top: 7px; /* Adjust based on the size of your icon */
-    left: 40%;
+    left: 39%;
     transform: translateX(-50%); /* Center the icon */
     width: 35px; /* Width of the icon */
     height: 31px; /* Height of the icon */
