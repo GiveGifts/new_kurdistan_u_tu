@@ -147,16 +147,16 @@ text-align: center;
 }
 
 .product-image {
-    width: 80px;
+    width: 95px;
     height: auto;
     margin-right: 40px;
-    margin-left: 30px;
+    margin-left: 20px;
 }
 
 .product-quantity {
     font-size: 12px;
     flex-grow: 1;
-    margin-right: 50px; /* Added */
+    margin-right: 60px; /* Added */
 }
 
 .quantity-input {
