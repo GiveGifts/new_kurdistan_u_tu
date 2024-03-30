@@ -184,10 +184,12 @@
         
     });
     document.querySelector('#paypal-button-container').addEventListener('click', function() {
-    window.scrollBy({
-        top: 100, // Adjust this value as per your requirement
-        behavior: 'smooth' // For smooth scrolling
-    });
+    setTimeout(function() {
+        window.scrollBy({
+            top: 100, // Adjust this value as per your requirement
+            behavior: 'smooth' // For smooth scrolling
+        });
+    }, 2000); // Delay of 2 seconds (2000 milliseconds)
 });
     </script>
 </body>
