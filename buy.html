@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Product Checkout</title>
     <link rel="stylesheet" href="cheakoutstyle.css"> <!-- Link to your external CSS file -->
+    
     <!-- Include PayPal JavaScript SDK -->
   
     <script src="https://www.paypal.com/sdk/js?client-id=ASOBbmLcFTc4tlLNk0OJ1lsmMAvTq7bqU-kxSxSCwP68VroJ_HuTvemhj1gJF2dvWzFgBqgWIl2a94kS&currency=EUR"></script>
@@ -89,7 +90,9 @@
             
 
         </form>
+        
     </div>
+    
 
     <script>
        document.getElementById("increment").addEventListener("click", function () {
@@ -151,9 +154,13 @@
             document.getElementById("bookQuantity").textContent = quantity + " : عدد الكتب";
         }
 
-        // Initialize PayPal Button
-        var FUNDING_SOURCES = [paypal.FUNDING.CREDIT, paypal.FUNDING.CARD];
-        FUNDING_SOURCES.forEach(function(fundingSource){
+        function scrollPageDown() {
+        window.scrollBy(0, 200); // Scrolls the page down by 200 pixels
+    }
+
+    // Initialize PayPal Button
+    var FUNDING_SOURCES = [paypal.FUNDING.CREDIT, paypal.FUNDING.CARD];
+    FUNDING_SOURCES.forEach(function(fundingSource){
         paypal.Buttons({
             createOrder: function(data, actions) {
                 var quantity = parseInt(document.getElementById("quantity").value);
@@ -171,26 +178,26 @@
                 });
             },
             onApprove: function(data, actions) {
-    return actions.order.capture().then(function(details) {
-        console.log('Payment captured:', details);
-        window.location.href = 'thanks.html?name=' + encodeURIComponent(details.payer.name.given_name);
-        
-        
-    });
-},
+                return actions.order.capture().then(function(details) {
+                    console.log('Payment captured:', details);
+                    window.location.href = 'thanks.html?name=' + encodeURIComponent(details.payer.name.given_name);
+                    // Scroll the page down after 3 seconds
+                    setTimeout(scrollPageDown, 3000);
+                });
+            },
             fundingSource: fundingSource,
-            
         }).render('#paypal-button-container'); // Render the PayPal button into this container
-        
     });
-    document.querySelector('#paypal-button-container-' + FUNDING_SOURCES[0]).addEventListener('click', function() {
-    setTimeout(function() {
-        window.scrollBy({
-            top: 100, // Adjust this value as per your requirement
-            behavior: 'smooth' // For smooth scrolling
-        });
-    }, 2000); // Delay of 2 seconds (2000 milliseconds)
-});
-    </script>
+</script>
+<footer id="mu-footer" role="contentinfo">
+    <div class="container">
+        <div class="mu-footer-area">
+            
+            <h2 class="mu-copyright">&copy;Jwan Osman تمت برمجة الموقع بواسطة </h2>
+        </div>
+    </div>
+
+</footer>
 </body>
+
 </html>

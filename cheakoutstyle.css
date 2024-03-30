@@ -37,7 +37,61 @@
     background-image: url('shopping-cart-icon.png');
     background-size: cover;
 }
+h2 {  
+	font-size: 50px; 
+	line-height: 1.13; 
+}
+#mu-footer{
+	background-color: rgb(255, 255, 255);
+	display: inline;
+	float: left;
+	width: 100%;
+}
 
+.mu-footer-area{
+	display: inline;
+	float: left;
+	padding: 20px 20px;
+	text-align: center;
+	width: 100%;
+}
+
+.mu-footer-area a{
+	font-weight: 600;
+}
+
+.mu-social-media {
+	display: inline;
+	float: left;
+	width: 100%;
+}
+
+.mu-social-media a {
+	display: inline-block;
+	font-size: 15px;
+	width: 35px;
+	height: 35px;
+	line-height: 33px;
+	text-align: center;
+	margin: 0 5px;
+	-webkit-transition: all 0.5s;
+	transition: all 0.5s;
+	border-radius: 50%;
+}
+
+.mu-social-media a:hover,
+.mu-social-media a:focus {
+	background-color: #fff;
+}
+
+.mu-copyright {
+	padding-top: 30px;
+text-align: center;
+	font-size: 18px;
+	margin-bottom: 40px;
+
+	
+}
 .price-info::after {
     content: "السلة";
     position: absolute;
