@@ -38,6 +38,10 @@
                   </div>
                 <select id="country" name="country" required>
                     <option value="Germany">Germany</option>
+                    <option value="Denmark">Denmark</option>
+                    <option value="Sweden">Sweden</option>
+                    <option value="Belgium">Belgium</option>
+                    <option value="Netherlands">Netherlands-Holland</option>
                     <option value="Albania">Albania</option>
                     <option value="Andorra">Andorra</option>
                     <option value="Austria">Austria</option>
@@ -52,8 +56,8 @@
                     <option value="Denmark">Denmark</option>
                     <option value="Finland">Finland</option>
                     <option value="France">France</option>
-                    
                     <option value="Greece">Greece</option>
+                    <option value="Germany">Germany</option>
                     <option value="Hungary">Hungary</option>
                     <option value="Italy">Italy</option>
                     <option value="Luxembourg">Luxembourg</option>
@@ -68,6 +72,9 @@
                     <option value="Turkey">Turkey</option>
                     <option value="United Kingdom">United Kingdom</option>
                     <option value="United States">United States</option>
+                    <option value="5 euro">5 euro</option>
+                    <option value="3 euro">3 euro</option>
+
                     <!-- Other country options -->
                 </select>
             </div>
@@ -149,6 +156,10 @@
                     return 15;
                 default:
                     return 13;
+                case"5 euro":
+                return 5;
+                case"3 euro":
+                return 3;
             }
         }
 
