@@ -39,126 +39,58 @@
   </head>
 <body>
     <section id="mu-hero">
-		<div class="container">
+       
+		
+            
 			<div class="row">
-                <h2  class="text_test"> مرحبا بك </h2>
-                
-                <h2  class="text_test"> Tu bi xêrss hatîn</h2>
-                <br>
+                <h2  class="text_test"> مرحبا بك <br>
+                 Tu bi xêrss hatîn</h2>
+               
 				<div class="col-md-6 col-sm-6 col-sm-push-6">
 					
 					<body>
-						<div class="book3d-container">
-							
-							<div class="book3d" id="book">
-								<div class="book3dd" id="book">
-								<img src="assets/images/cover_kurdi.png" alt="">
-							
-							</div>
-							</div>
+						<div class="book3d-container1">
+
+								<img src="assets/images/both.png" alt="">
+
 						</div>
 					
-					
- 
-						<script>
-							document.addEventListener("DOMContentLoaded", function() {
-								const book = document.getElementById("book");
-								let isUserRotated = false;
-								let previousTouchX = 0;
-								let rotationAngle = 0;
-								let sensitivity = 0.5; // Initial sensitivity value
-								let lastTouchTime = 0;
-								let lastTouchX = 0;
-								let rotationTimer; // Timer for automatic rotation
-						
-								// Add event listeners for touch events
-								book.addEventListener("touchstart", handleTouchStart);
-								book.addEventListener("touchmove", handleTouchMove);
-								book.addEventListener("touchend", handleTouchEnd);
-						
-								function handleTouchStart(event) {
-									isUserRotated = true;
-									previousTouchX = event.touches[0].clientX;
-									// Stop the rotation animation completely when touch starts
-									book.style.animation = "none";
-									clearTimeout(rotationTimer); // Clear any existing rotation timer
-									event.preventDefault(); // Prevent default touch behavior
-								}
-						
-								function handleTouchMove(event) {
-									if (!isUserRotated) return;
-						
-									let touchX = event.touches[0].clientX;
-									let deltaTime = event.timeStamp - lastTouchTime;
-									let deltaX = touchX - previousTouchX;
-									let speed = Math.abs(deltaX / deltaTime); // Speed in pixels per millisecond
-						
-									// Calculate the remaining rotation needed to reach 360 degrees
-									let remainingRotation = 360 - Math.abs(rotationAngle % 360);
-						
-									// Calculate a deceleration factor based on the remaining rotation and speed
-									let decelerationFactor = Math.max(0.1, Math.min(8, remainingRotation / 180) * (1 + speed));
-						
-									// Adjust sensitivity based on the deceleration factor
-									sensitivity = Math.max(0.1, Math.min(3, speed)) * decelerationFactor;
-						
-									rotationAngle += deltaX * sensitivity;
-									rotationAngle %= 360; // Ensure rotation stays within 360 degrees
-						
-									book.style.transform = `rotateY(${rotationAngle}deg)`;
-									previousTouchX = touchX;
-									lastTouchTime = event.timeStamp;
-									clearTimeout(rotationTimer); // Clear any existing rotation timer
-									event.preventDefault(); // Prevent default touch behavior
-								}
-						
-								function handleTouchEnd() {
-									isUserRotated = false;
-									// Start the rotation timer after 5 seconds of inactivity
-									rotationTimer = setTimeout(autoRotate, 5000);
-								}
-						
-								// Function to automatically rotate the book
-								function autoRotate() {
-									rotationAngle += 0.5; // Adjust the rotation angle increment as needed (slower speed)
-									book.style.transform = `rotateY(${rotationAngle}deg)`;
-									// Continue rotating until the user interacts with the book again
-									rotationTimer = setTimeout(autoRotate, 10); // Adjust the interval as needed
-								}
-							});
-						</script>
-						
-						
-							
-						
+                       
 					
 				</div>
 
 				
 
-			</div>
-		</div>
+			
+		
 	</section>			
 											
 <section id="mu-author">
+    
     <div class="container">
+        
         <div class="row">
+            
             <div class="col-md-12">
+                
                 <div class="mu-author-area">
 
                 
 
                     <!-- Start Author Content -->
                     <div class="mu-author-content">
+                        
                         <div class="row">
+                            
                             <div class="col-md-6">
                                 
                             </div>
                             <div class="col-md-6">
+                                
                                 <div class="mu-author-info">
                                     
                                     <div class="contact-buttons">
-                                        
+                                        <div class="space">
                                         <h2  class="text_test1"> بأي لغة تريد تصفح الموقع ؟</h2>
                                          <h2  class="text_test1"> Bi kîjan zimanî tu dixwaze li malperê bigerin ? </h2>
  
@@ -179,6 +111,7 @@
                                 </div>
                                 </div>
                             </div>
+                        </div>
                         </div>
                     </div>
                     <!-- End Author Content -->

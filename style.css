@@ -110,7 +110,10 @@ img {
 strong {
 	font-weight: 500;
 }
-
+.space {
+    bottom: -50px;
+	padding-top: -100px;
+  }
 code {
 	background-color: #c9abac;
 	border-radius: 2px;
@@ -176,6 +179,19 @@ button:focus {
 }
 
 /*Wordpress default class*/
+.book3d-container1{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 450px;;
+    perspective: 600px;
+	margin-left: -13px;
+	margin-top: -80px;
+	margin-bottom: -140px;
+	
+	
+	
+}
 
 .book3d-container{
     display: flex;
@@ -248,10 +264,10 @@ button:focus {
 }
 .vd-indicator {
 	position: absolute;
-	top: 350px;
+	top: 330px;
 	bottom: -50px;
 	left: calc(40% - Center); /* Center horizontally */
-	width: 80px;
+	width: 50px;
 	height: auto;
 	z-index: 1;
 }
@@ -495,7 +511,8 @@ box-shadow: 30px 30px 80px rgb(0, 0, 0);
 	text-align: center;
 	font-weight: -100PX;
 	font-size: 40px;
-	padding-top: -30px;
+	padding-top: -40px;
+	margin-top: -40px;
 	padding-bottom: -30px;
 }
 .text_test1 {
@@ -695,7 +712,10 @@ box-shadow: 30px 30px 80px rgb(0, 0, 0);
 /*--------------------*/
 /* AUTHOR */
 /*--------------------*/
-
+.space {
+    
+	padding-bottom: -400px;
+  }
 
 #mu-author {
 	background-color: #5e5e5e;
@@ -703,7 +723,10 @@ box-shadow: 30px 30px 80px rgb(0, 0, 0);
 	float: left;
 	width: 100%;
 }
-
+.space h2{
+    margin-top: -50px;
+	padding-top: -100px;
+  }
 .mu-author-area {
 	display: inline;
 	float: left;
@@ -931,6 +954,13 @@ box-shadow: 30px 30px 80px rgb(0, 0, 0);
 	margin-top: -30px;
 	margin-bottom: 150px;
 }
+.contact-buttons1 {
+	
+    text-align: center;
+	margin-top: -80px;
+	margin-bottom: 110px;
+}
+
 
 .text_h1{
 	display: block;
@@ -988,13 +1018,13 @@ box-shadow: 30px 30px 80px rgb(0, 0, 0);
 .mu-footer-area{
 	display: inline;
 	float: left;
-	padding: 4px 0;
+	padding: 20px 17px;
 	text-align: center;
 	width: 100%;
 }
 
 .mu-footer-area a{
-	font-weight: 600;
+	font-weight: 800;
 }
 
 .mu-social-media {
@@ -1022,8 +1052,12 @@ box-shadow: 30px 30px 80px rgb(0, 0, 0);
 }
 
 .mu-copyright {
-	margin-top: 10px;
-	display: inline-block;
+	padding-top: -15px;
+text-align: center;
+	font-size: 18px;
+	margin-bottom: 22px;
+	top: -30px;
+	
 }
 
 

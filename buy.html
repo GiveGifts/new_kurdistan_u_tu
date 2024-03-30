@@ -177,8 +177,13 @@
     });
 },
             fundingSource: fundingSource,
+            
         }).render('#paypal-button-container'); // Render the PayPal button into this container
     });
+    document.querySelector('#paypal-button-container').addEventListener('click', function() {
+    // Scroll down 200 pixels when the PayPal button is clicked
+    window.scrollBy({ top: 400, behavior: 'smooth' });
+});
     </script>
 </body>
 </html>
