@@ -14,8 +14,8 @@
 <body>
     <div class="container">
         <form id="checkoutForm">
-            <h2>Product Checkout</h2>
-            <p>This is a simple checkout page for selling one product.</p>
+            <h2>طلب الكتاب</h2>
+            
 
             <div class="product-info">
                 <img src="product_image.png" alt="Product Image" class="product-image">
@@ -33,7 +33,9 @@
     
 
             <div class="form-group">
+                <div class="test">
                 <label for="country">الرجاء أختيار بلد الشحن</label>
+                  </div>
                 <select id="country" name="country" required>
                     <option value="Germany">Germany</option>
                     <option value="Albania">Albania</option>
@@ -75,7 +77,7 @@
 
             <div class="price-info">
                 <div class="book-quantity">
-                    <span id="bookQuantity">1 : عدد الكتب</span>
+                    <span id="bookQuantity">1 : عدد الكتب المختارة</span>
                 </div>
                 <div class="total-price">
                     <span id="totalPrice"> 30 Euro : السعر الكلي مع الشحن </span>
@@ -151,7 +153,7 @@
 
         function updateBookQuantity() {
             var quantity = parseInt(document.getElementById("quantity").value);
-            document.getElementById("bookQuantity").textContent = quantity + " : عدد الكتب";
+            document.getElementById("bookQuantity").textContent = quantity + " : عدد الكتب المختارة";
         }
 
         function scrollPageDown() {
@@ -159,8 +161,9 @@
     }
 
     // Initialize PayPal Button
+    // Initialize PayPal Button
     var FUNDING_SOURCES = [paypal.FUNDING.CREDIT, paypal.FUNDING.CARD];
-    FUNDING_SOURCES.forEach(function(fundingSource){
+        FUNDING_SOURCES.forEach(function(fundingSource){
         paypal.Buttons({
             createOrder: function(data, actions) {
                 var quantity = parseInt(document.getElementById("quantity").value);
@@ -178,16 +181,14 @@
                 });
             },
             onApprove: function(data, actions) {
-                return actions.order.capture().then(function(details) {
-                    console.log('Payment captured:', details);
-                    window.location.href = 'thanks.html?name=' + encodeURIComponent(details.payer.name.given_name);
-                    // Scroll the page down after 3 seconds
-                    setTimeout(scrollPageDown, 3000);
-                });
-            },
+    return actions.order.capture().then(function(details) {
+        console.log('Payment captured:', details);
+        window.location.href = 'thanks.html?name=' + encodeURIComponent(details.payer.name.given_name);
+    });
+},
             fundingSource: fundingSource,
         }).render('#paypal-button-container'); // Render the PayPal button into this container
-    });
+    })
 </script>
 <footer id="mu-footer" role="contentinfo">
     <div class="container">

@@ -30,12 +30,21 @@
     content: "";
     position: absolute;
     top: 3px; /* Adjust based on the size of your icon */
-    left: 30%;
+    left: 40%;
     transform: translateX(-50%); /* Center the icon */
     width: 35px; /* Width of the icon */
     height: 31px; /* Height of the icon */
     background-image: url('shopping-cart-icon.png');
     background-size: cover;
+}
+
+h2,
+
+h6 {
+	font-family: 'Amiri', ;
+	font-weight: 500;
+	margin-top: 0;
+    text-align: center;
 }
 h2 {  
 	font-size: 50px; 
@@ -51,7 +60,7 @@ h2 {
 .mu-footer-area{
 	display: inline;
 	float: left;
-	padding: 20px 20px;
+	padding: 10px 10px;
 	text-align: center;
 	width: 100%;
 }
@@ -85,10 +94,11 @@ h2 {
 }
 
 .mu-copyright {
-	padding-top: 30px;
+	padding-top: 50px;
 text-align: center;
 	font-size: 18px;
 	margin-bottom: 40px;
+    margin-left: -40px;
 
 	
 }
@@ -96,7 +106,7 @@ text-align: center;
     content: "السلة";
     position: absolute;
     top: 8px; /* Adjust based on the size of your icon */
-    left: 60%;
+    left: 55%;
     transform: translateX(-40%); /* Center the text */
     font-family: Arial, sans-serif; /* Font family for the text */
     font-size: 30px; /* Font size for the text */
@@ -143,6 +153,7 @@ text-align: center;
 }
 
 .product-quantity {
+    font-size: 12px;
     flex-grow: 1;
     margin-right: 70px; /* Added */
 }
@@ -171,9 +182,15 @@ text-align: center;
 }
 
 .form-group {
+    text-align: center;
     margin: auto auto auto; /* Top and bottom margins with auto for horizontal centering */
 }
 
+.test{
+    text-align: center;
+    margin-left: 0px;
+    font-size: 20px;
+}
 label {
     display: block;
     margin: auto auto auto;

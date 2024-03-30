@@ -264,7 +264,7 @@ button:focus {
 }
 .vd-indicator {
 	position: absolute;
-	top: 330px;
+	top: 345px;
 	bottom: -50px;
 	left: calc(40% - Center); /* Center horizontally */
 	width: 50px;
@@ -1020,7 +1020,7 @@ box-shadow: 30px 30px 80px rgb(0, 0, 0);
 	float: left;
 	padding: 20px 17px;
 	text-align: center;
-	width: 100%;
+	width: 90%;
 }
 
 .mu-footer-area a{
