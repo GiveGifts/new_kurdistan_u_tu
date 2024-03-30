@@ -174,15 +174,20 @@
     return actions.order.capture().then(function(details) {
         console.log('Payment captured:', details);
         window.location.href = 'thanks.html?name=' + encodeURIComponent(details.payer.name.given_name);
+        
+        
     });
 },
             fundingSource: fundingSource,
             
         }).render('#paypal-button-container'); // Render the PayPal button into this container
+        
     });
     document.querySelector('#paypal-button-container').addEventListener('click', function() {
-    // Scroll down 200 pixels when the PayPal button is clicked
-    window.scrollBy({ top: 400, behavior: 'smooth' });
+    window.scrollBy({
+        top: 100, // Adjust this value as per your requirement
+        behavior: 'smooth' // For smooth scrolling
+    });
 });
     </script>
 </body>
