@@ -9,7 +9,30 @@
     
     <!-- Include PayPal JavaScript SDK -->
   
-    <script src="https://www.paypal.com/sdk/js?client-id=ASOBbmLcFTc4tlLNk0OJ1lsmMAvTq7bqU-kxSxSCwP68VroJ_HuTvemhj1gJF2dvWzFgBqgWIl2a94kS&currency=EUR"></script>
+    <script>
+        // Fetch the PayPal client ID from the server
+        async function fetchPayPalClientId() {
+            try {
+                const response = await fetch('/api/paypal/client-id');
+                const data = await response.json();
+                const clientId = data.clientId;
+                // Load PayPal SDK with retrieved client ID
+                loadPayPalSDK(clientId);
+            } catch (error) {
+                console.error('Error fetching PayPal client ID:', error);
+            }
+        }
+
+        // Function to load PayPal SDK dynamically with client ID
+        function loadPayPalSDK(clientId) {
+            var script = document.createElement('script');
+            script.src = `https://www.paypal.com/sdk/js?client-id=${clientId}&currency=EUR`;
+            document.body.appendChild(script);
+        }
+
+        // Call the function to fetch the PayPal client ID
+        window.onload = fetchPayPalClientId;
+    </script>
 </head>
 <body>
     <div class="container">
