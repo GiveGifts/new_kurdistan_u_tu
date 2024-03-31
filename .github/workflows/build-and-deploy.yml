@@ -1,0 +1,33 @@
+name: Build and Deploy
+
+on:
+  push:
+    branches:
+      - main  # Adjust branch name as needed
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14'
+
+    # Additional steps to build your website, if necessary
+    # For example, if you're using npm:
+    # - name: Install dependencies
+    #   run: npm install
+    # - name: Build website
+    #   run: npm run build
+
+    - name: Update HTML with PayPal client ID
+      run: |
+        sed -i "s|REPLACE_WITH_CLIENT_ID|${{ secrets.PAYPAL_CLIENT_ID }}|g" buy.html
+
+    - name: Deploy to hosting provider
+      # Add your deployment steps here
