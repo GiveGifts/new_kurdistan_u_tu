@@ -38,6 +38,32 @@
     background-size: cover;
 }
 
+.price-info1 {
+    display: block;
+    margin: 40px auto 20px; /* Top and bottom margins with auto for horizontal centering */
+    max-width: 100%;
+    height: 200%;
+    padding-top: 40px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 5px;
+    border: 4px solid #000000;
+    border-radius: 13px; /* Adjust border radius to match other form elements */
+    background-color: #fff;
+    font-size: 16px;
+    position: relative;
+}
+.price-info1::before {
+    content: "";
+    position: absolute;
+    top: 7px; /* Adjust based on the size of your icon */
+    left: 38%;
+    transform: translateX(-50%); /* Center the icon */
+    width: 35px; /* Width of the icon */
+    height: 31px; /* Height of the icon */
+    background-image: url('shopping-cart-icon.png');
+    background-size: cover;
+}
 h2,
 
 h6 {
@@ -103,6 +129,17 @@ text-align: center;
 
 	
 }
+.price-info1::after {
+    content: "Selik";
+    position: absolute;
+    top: 8px; /* Adjust based on the size of your icon */
+    left: 55%;
+    transform: translateX(-40%); /* Center the text */
+    font-family: Arial, sans-serif; /* Font family for the text */
+    font-size: 30px; /* Font size for the text */
+    color: black; /* Color of the text */
+}
+
 .price-info::after {
     content: "السلة";
     position: absolute;

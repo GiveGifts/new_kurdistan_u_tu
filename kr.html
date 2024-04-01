@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 	
-    <title>كردستان و أنت : الرئيسية</title>
+    <title> Kurdistan û Tu </title>
 	
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/icon" href="assets/images/favicon.ico"/>
@@ -55,7 +55,7 @@
 				      </button>
 
 				      <!-- Text Logo -->
-				      <a class="navbar-brand" href="index.html"><i class="fa fa-book" aria-hidden="true"></i> كردستان و أنت</a>
+				      <a class="navbar-brand" href="index.html"><i class="fa fa-book" aria-hidden="true"></i> Kurdistan û Tu </a>
 
 				      <!-- Image Logo -->
 				      <!-- <a class="navbar-brand" href="index.html"><img src="assets/images/logo.png"></a> -->
@@ -66,13 +66,13 @@
 				    <!-- Collect the nav links, forms, and other content for toggling -->
 				    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				      	<ul class="nav navbar-nav mu-menu navbar-right">
-					        <li><a href="#">الرئيسية</a></li>
-					        <li><a href="#mu-book-overview">لمحة عن الكتاب</a></li>
-							<li><a href="#mu-counter">أحصائيات عن الكتاب</a></li>
-							<li><a href="#mu-testimonials">بعض اراء القارئين</a></li>
-					        <li><a href="#mu-author">عن الكاتب</a></li>
-							<li><a href="#mu-author">لأستفسار أو الشراء	</a></li>
-				            <li><a href="#mu-contact">أتصل بنا</a></li>
+					        <li><a href="#">Rûpela Serî</a></li>
+					        <li><a href="#mu-book-overview">Pirtûk bi kurtî</a></li>
+							<li><a href="#mu-counter">Amar derbarê pirtûkê da</li>
+							<li><a href="#mu-testimonials">Hin nirxandinên xwendevanan </a></li>
+					        <li><a href="#mu-author">Derbarê nivîskar da </a></li>
+							<li><a href="#mu-author">Ji bo pirs û daxwazê</a></li>
+				            
 				      	</ul>
 				    </div><!-- /.navbar-collapse -->
 			  	</div><!-- /.container-fluid -->
@@ -81,6 +81,7 @@
 	</header>
 	<!-- End Header -->
     
+	
 	<!-- Start Featured Slider -->
 	<!--<img src="assets/images/ebook.png" alt="Ebook img">-->
 	<section id="mu-hero">
@@ -89,13 +90,102 @@
 
 				<div class="col-md-6 col-sm-6 col-sm-push-6">
 					
-						<body>
-							<div class="book3d-container">
-								<div class="book3d">
-									<img src="assets/images/cover_kurdi.jpg" alt="">
-								</div>
+					<body>
+						<div class="book3d-container">
+							<img class="vd-indicator" src="assets/images/3d-icon.png" alt="3D Icon"> 
+							<div class="book3d" id="book">
+								<div class="book3dd" id="book">
+								<img src="assets/images/cover_kurdi.png" alt="">
+							
 							</div>
-						</body>
+							</div>
+						</div>
+
+						<div class="contact-buttons1">
+							
+
+						<a onclick="redirectToWhatsApp('buy_kr.html')" target="_blank" class="whatsapp-button">
+							<img src="shpping.png" alt="WhatsApp Icon">    Ji bo kirîna pirtûkê 
+						</a>
+						<script>
+							function redirectToWhatsApp(url) {
+							   window.location.href = url;
+							}
+						 </script>
+							
+						</div>
+					
+ 
+						<script>
+							document.addEventListener("DOMContentLoaded", function() {
+								const book = document.getElementById("book");
+								let isUserRotated = false;
+								let previousTouchX = 0;
+								let rotationAngle = 0;
+								let sensitivity = 0.5; // Initial sensitivity value
+								let lastTouchTime = 0;
+								let lastTouchX = 0;
+								let rotationTimer; // Timer for automatic rotation
+						
+								// Add event listeners for touch events
+								book.addEventListener("touchstart", handleTouchStart);
+								book.addEventListener("touchmove", handleTouchMove);
+								book.addEventListener("touchend", handleTouchEnd);
+						
+								function handleTouchStart(event) {
+									isUserRotated = true;
+									previousTouchX = event.touches[0].clientX;
+									// Stop the rotation animation completely when touch starts
+									book.style.animation = "none";
+									clearTimeout(rotationTimer); // Clear any existing rotation timer
+									event.preventDefault(); // Prevent default touch behavior
+								}
+						
+								function handleTouchMove(event) {
+									if (!isUserRotated) return;
+						
+									let touchX = event.touches[0].clientX;
+									let deltaTime = event.timeStamp - lastTouchTime;
+									let deltaX = touchX - previousTouchX;
+									let speed = Math.abs(deltaX / deltaTime); // Speed in pixels per millisecond
+						
+									// Calculate the remaining rotation needed to reach 360 degrees
+									let remainingRotation = 360 - Math.abs(rotationAngle % 360);
+						
+									// Calculate a deceleration factor based on the remaining rotation and speed
+									let decelerationFactor = Math.max(0.1, Math.min(8, remainingRotation / 180) * (1 + speed));
+						
+									// Adjust sensitivity based on the deceleration factor
+									sensitivity = Math.max(0.1, Math.min(3, speed)) * decelerationFactor;
+						
+									rotationAngle += deltaX * sensitivity;
+									rotationAngle %= 360; // Ensure rotation stays within 360 degrees
+						
+									book.style.transform = `rotateY(${rotationAngle}deg)`;
+									previousTouchX = touchX;
+									lastTouchTime = event.timeStamp;
+									clearTimeout(rotationTimer); // Clear any existing rotation timer
+									event.preventDefault(); // Prevent default touch behavior
+								}
+						
+								function handleTouchEnd() {
+									isUserRotated = false;
+									// Start the rotation timer after 5 seconds of inactivity
+									rotationTimer = setTimeout(autoRotate, 1500);
+								}
+						
+								// Function to automatically rotate the book
+								function autoRotate() {
+									rotationAngle += 0.5; // Adjust the rotation angle increment as needed (slower speed)
+									book.style.transform = `rotateY(${rotationAngle}deg)`;
+									// Continue rotating until the user interacts with the book again
+									rotationTimer = setTimeout(autoRotate, 10); // Adjust the interval as needed
+								}
+							});
+						</script>
+						
+						
+							
 						
 					
 				</div>
@@ -105,7 +195,7 @@
 			</div>
 		</div>
 	</section>
-	
+
 	<!-- Start Featured Slider -->
 	
 	<!-- Start main content -->
@@ -113,7 +203,8 @@
 	<main role="main">
 
 	
-
+			<!-- Start Counter -->
+			
 
 		<!-- Start Book Overview -->
 		<section id="mu-book-overview">
@@ -123,7 +214,7 @@
 						<div class="mu-book-overview-area">
 
 							<div class="mu-heading-area">
-								<h2 class="mu-heading-title" >لمحة عن الكتاب</h2>
+								<h3 class="mu-heading-title" > Pirtûk bi kurtî </h3>
 								<span class="mu-header-dot"></span>
 								
 							</div>
@@ -136,11 +227,10 @@
 									<div class="col-md-3 col-sm-6">
 										<div class="mu-book-overview-single">
 											
-												<i aria-hidden="true"></i>
-												<img src="assets/images/cover_kurdi.jpg" class="slide_right" >
+												
 										
-											<h3>وصف الكتاب</h3>
-											<p>الكتاب يصف بقصائد وخواطر  لمشاعر مبعثرة بين حبين حب الوطن كردستان  وحب الطرف الأخر</p>
+											<h3>Şayesandina pirtûkê</h3>
+											<p>Pirtûk bi helbest, yad û yadgarîyên hestine berbelavbûyî di navbera du evînan da dişayesîne, evîna welêt, Kurdistan, û evîna kesekî din</p>
 										</div>
 									</div>
 									<!-- / Book Overview Single Content -->
@@ -149,12 +239,11 @@
 									<div class="col-md-3 col-sm-6">
 										<div class="mu-book-overview-single">
 											
-												<i aria-hidden="true"></i>
-												<img src="assets/images/cover_kurdi.jpg" class="slide_left" >
+												
 										
-											<h3>لغة الكتاب</h3>
-											<p>الكتاب باللغتين العربية والكردية<br> 
-												النص باللغة العربية في الجانب الأيمن و نفس النص والمحتوى باللغة الكردية في الجانب الأيسر </p>
+											<h3>Zimanê pirtûkê </h3>
+											<p>Pirtûk bi zimanê erebî û kurdî ye<br> 
+												Nivîs bi zimanê erebî li rexê rastê ye û heman nivîs û naverok bi zimanê kurdî li rexê çepê ye </p>
 											
 										</div>
 									</div>
@@ -166,14 +255,12 @@
 									<div class="col-md-3 col-sm-6">
 										<div class="mu-book-overview-single">
 											
-												<i aria-hidden="true"></i>
-												<img src="assets/images/cover_kurdi.jpg" class="slide_right" >
-										
-											<h3>هدف الكتاب</h3>
+												
+											<h3>Armanca pirtûkê</h3>
 											
-											<p>الكتاب يحتوي على الكثير من الأهداف ولكن هدفه الأول هو وضع اللغة الكردية بجانب اللغات العالمية الأخرى<br> 
-												ومن الأهداف أيضا نشر اللغة الكردية بطريقة سهل فهمها مع تواجد أيضا لغات أخرى في جانبها للمساعدة في فهم وترجمت المصطلحات الغير مفهومة<br>
-												ومن أهدافها أيضاً إيصال اللغة الكردية أكثر  وأكثر إلى العديد من البيوت والمكاتب العالمية للمحافظة أكثر و أكثر  على اللغة الكردية</p>
+											<p>Pirtûk xwedî gelek armancan e, lê armanca yekem ew e, ku zimanê kurdî li kêlek zimanên cîhanî yên din dayîne<br> 
+												Ji bilî wê, belavkirina zimanê kurdî bi awayekî hêsan û hebûna zimanên dîtir jî li rex wê ji bo sivikkirin, zelalkirin û wergerandina têgehên nedîyar<br>
+												Raserî van, gihandina zimanê kurdî bo gelek xanî û nivîsgehên cîhanî, ji bo parastina zimanê kurdî her û her xurttir bibe</p>
 										</div>
 										</div>
 									</div>
@@ -183,13 +270,11 @@
 									<div class="col-md-3 col-sm-6">
 										<div class="mu-book-overview-single">
 											
-												<i aria-hidden="true"></i>
-												<img src="assets/images/cover_kurdi.jpg" class="slide_left" >
-										
-											<h3>جودة الكتاب</h3>
-											<p>الكتاب تم طباعته على الورق الأسود العالي الجودة والملمس لكي يستمتع القارئ بالقراءة ولمس الكتاب<br> 
-												غلاف الكتاب تمت طباعته على الكرتون المقوى مع إضافة طبقة حماية للحماية من الخدوش<br>
-												الكتاب يأتي أيضا معه صندوق خاص لوضع الكتاب في داخله عند الانتهاء من القراءة وهو أيضا محمي بطبقة حماية للحماية من الخدوش</p>
+												
+											<h3>Kalîteya pirtûkê </h3>
+											<p>Pirtûk li ser pelikine reş û xwedî kalîteyeke bilind û nermik hatiye çapkirin, da xwendevan çêjeke xweş ji xwendin û destdanîna li ser pirtûkê bibîne.<br> 
+												Bergê pirtûkê li ser kertonê hêzdarkirî hatiye çapkirin li gel zêdekirina qapekî parastinê li dijî rûşandinê<br>
+												Pirtûk tevî sindoqeke taybet tê, da pirtûk tê da were danîn dema bidawîbûna xwendina wê, û ew jî xwedî qapekî parastinê ye li dijî rûşandinê.</p>
 										</div>
 									</div>
 									<!-- / Book Overview Single Content -->
@@ -206,81 +291,83 @@
 		</section>
 		<!-- End Book Overview -->
 
+		<section id="mu-counter">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="mu-counter-area">
 
-
-	
-
-
-			<!-- Start Counter -->
-			<section id="mu-counter">
-				<div class="container">
-					<div class="row">
-						<div class="col-md-12">
-							<div class="mu-counter-area">
-	
-								<div class="mu-counter-block">
-									<div class="row">
-										<div class="mu-heading-area">
-											<h2 class="mu-heading-title" >أحصائيات عن الكتاب</h2>
-											<span class="mu-header-dot"></span>
-											
-										</div>
-										<!-- Start Single Counter -->
-											<div class="col-md-3 col-sm-6">
-												<div class="mu-single-counter">
-													<i class="fa fa-file-text-o" aria-hidden="true"></i>
-													<div class="counter-value" data-count="2023">0</div>
-													<h5 class="mu-counter-name">عام اصدار الكتاب</h5>
-												</div>
-											</div>
-										<!-- / Single Counter -->
-	
-											
-										<!-- Start Single Counter -->
-										<div class="col-md-3 col-sm-6">
-											<div class="mu-single-counter">
-												<i class="fa fa-files-o" aria-hidden="true"></i>
-												<div class="counter-value" data-count="168">0</div>
-												<h5 class="mu-counter-name">عدد الصفحات الكلي</h5>
-											</div>
-										</div>
-										<!-- / Single Counter -->
-	
+							<div class="mu-counter-block">
+								<div class="row">
+									<div class="mu-heading-area">
+										<h3 class="mu-heading-title" >Amar derbarê pirtûkê da</h3>
+										<span class="mu-header-dot"></span>
+										
 									
-										<!-- Start Single Counter -->
-										<div class="col-md-3 col-sm-6">
-											<div class="mu-single-counter">
-												<i class="fa fa-users" aria-hidden="true"></i>
-												<div class="counter-value" data-count="139">0</div>
-												<h5 class="mu-counter-name">عدد المبيعات</h5>
-											</div>
-										</div>
-										<!-- / Single Counter -->
-							
-										<!-- Start Single Counter -->
-										
-											<div class="col-md-3 col-sm-6">
-											<div class="mu-single-counter">
-												<i class="fa fa-trophy" aria-hidden="true"></i>
-												<div class="counter-value" data-count="30">0</div>
-												<h5 class="mu-counter-name">عدد زوار الموقع</h5>
-											</div>
-										</div>
-										<!-- / Single Counter -->
-										
-	
+									<!-- / Single Counter -->
 
-
+										
+									<!-- Start Single Counter -->
+									<div class="col-md-3 col-sm-6">
+										<div class="mu-single-counter">
+											<i class="fa fa-files-o" aria-hidden="true"></i>
+											<div class="counter-value" data-count="174">0</div>
+											<h5 class="mu-counter-name">Hejmara rûpelan ya giştî </h5>
+										</div>
 									</div>
+									<!-- / Single Counter -->
+
+									<div class="col-md-3 col-sm-6">
+										<div class="mu-single-counter">
+											<i class="fa fa-users" aria-hidden="true"></i>
+											<div class="counter-value" data-count="487">0</div>
+											<h5 class="mu-counter-name">Hejmarên firotî </h5>
+										</div>
+									</div>
+									<!-- / Single Counter -->
 								</div>
-	
-	
+								<!-- Start Single Counter -->
+									<div class="col-md-3 col-sm-6">
+										<div class="mu-single-counter">
+											<i class="fa fa-file-text-o" aria-hidden="true"></i>
+											<div class="counter-value" data-count="2024">0</div>
+											<h5 class="mu-counter-name">Sala derketina pirtûkê  </h5>
+										</div>
+									</div>
+
+									<!-- Start Single Counter -->
+								
+						
+									<!-- Start Single Counter -->
+									
+										<div class="col-md-3 col-sm-6">
+										<div class="mu-single-counter">
+											<i class="fa fa-trophy" aria-hidden="true"></i>
+
+											<div class="counter-value" data-count="570">0</div>
+											<h5 class="mu-counter-name">Hejmara mêvanên malperê  </h5>
+										</div>
+									</div>
+									<!-- / Single Counter -->
+									
+
+
+
+								</div>
 							</div>
+
+
 						</div>
 					</div>
 				</div>
-				
-			</section>
+			</div>
+			
+		</section>
+
+
+	
+
+
 			<!-- End Counter -->
 	
 
@@ -292,7 +379,7 @@
 					<div class="col-md-12">
 						<div class="mu-testimonials-area">
 							<div class="mu-heading-area">
-								<h2 class="mu-heading-title">ماذا قالوا الذين قرأوا الكتاب</h2>
+								<h2 class="mu-heading-title">Xwendevanan derbarê pirtûkê da çi gotiye? </h2>
 								<span class="mu-header-dot"></span>
 							</div>
 
@@ -300,31 +387,31 @@
 								<ul class="mu-testimonial-slide">
 
 									<li>
-										<p>"شكرا للكتاب الذي غطى الكثير من الجوانب سواء كانت وطنية أو كانت حب لشخص واخر وشكرا أيضا له لأنه ركز على اللغة الكردية وجعلني اقرا اول كتاب باللغة الكردية سهل القراءة"</p>
+										<p>"Spas ji bo pirtûka, ku gelek alîyên welatperwer û yên derbarê evîna kesê din da, di nav xwe da hewand, û dîsa spas jê ra ji ber ku bal danî ser zimanê kurdî û ez hêştim ku ez pirtûka xwe ya yekem bi zimanê kurdî bi hêsanî bixwînim."</p>
 										<img class="mu-rt-img" src="assets/images/reader-1.jpg" alt="img">
-										<h5 class="mu-rt-name"> أشتي علو -</h5>
-										<span class="mu-rt-title">من النرويج</span>
+										<h5 class="mu-rt-name"> - Aştî</h5>
+										<span class="mu-rt-title">Ji Norwêcê</span>
 									</li>
 
 									<li>
-										<p>"سهل الفهم لمحبين القراءة باللغة الكردية ويركز على الجانب العاطفي والوطني أحببت الكتاب كثيرا و سأشتري نسخة أيضا لأعطائها كهدية لأبي"</p>
+										<p>"Têgihiştina wê hêsan e ji bo hezkerên xwendina bi zimanê kurdî û balê dikişîne ser alîyê hestdar û welatperwer. Min gelekî ji pirtûkê hez kir û ez ê kopîyeke din jê bikirim da ez weke dîyarî bidime bavê xwe."</p>
 										<img class="mu-rt-img" src="assets/images/reader-2.jpg" alt="img">
-										<h5 class="mu-rt-name"> سيوار علي -</h5>
-										<span class="mu-rt-title">من الدنمارك</span>
+										<h5 class="mu-rt-name"> - Sîwar </h5>
+										<span class="mu-rt-title">Ji Danîmarka </span>
 									</li>
 
 									<li>
-										<p>"كتاب أكثر من رائع من حيث المضمون وجودة رائعة من حيث غلاف الكتاب  والورق"</p>
+										<p>"Pirtûk nayab e ji alîyê naverokê va û kalîteya berg û pelikên pirtûkê jî nayab e"</p>
 										<img class="mu-rt-img" src="assets/images/reader-3.jpg" alt="img">
-										<h5 class="mu-rt-name"> باران بردز -</h5>
-										<span class="mu-rt-title">من المانيا</span>
+										<h5 class="mu-rt-name">- Baran</h5>
+										<span class="mu-rt-title">Ji almanya </span>
 									</li>
 
 									<li>
-										<p>"كل فقرة كانت لها أثر على قلبي وكأن الكاتب كان في قلبي وقلب كل كردي وكردية وترجم ما يخفيه القلب إلى حبر على ورق"</p>
+										<p>"Her bendek xwedî bandorekê bû li ser dilê min û mîna ku nivîskar di dilê min û dilê hemî kurdan da bû û tiştên ku dil vedişêre wergerand xûnaveke li ser rûpelan"</p>
 										<img class="mu-rt-img" src="assets/images/reader-4.jpg" alt="img">
-										<h5 class="mu-rt-name"> ليلى محمد -</h5>
-										<span class="mu-rt-title">من فرنسا</span>
+										<h5 class="mu-rt-name">- Evîn </h5>
+										<span class="mu-rt-title">Ji Fransayê</span>
 									</li>
 
 
@@ -350,7 +437,7 @@
 						<div class="mu-author-area">
 
 							<div class="mu-heading-area">
-								<h2 class="mu-heading-title">لأستفسار أو الشراء</h2>
+								<h3 class="mu-heading-title">Ji bo pirs û kirînê</h3>
 								<span class="mu-header-dot"></span>
 							</div>
 
@@ -363,13 +450,21 @@
 									<div class="col-md-6">
 										<div class="mu-author-info">
 											
+
+	
 											<div class="contact-buttons">
-												<h1>لأستفسار أو الشراء يرجى أختيار طريقة التواصل معنا عن طريق النقر على إحدى الخيارين</h1>
-												<a href="https://wa.me/004591838373" target="_blank" class="whatsapp-button">
-													<img src="assets/images/whatsapp-icon.png" alt="WhatsApp Icon">WhatsApp
-												</a>
+												<h1>ji kerema xwe li ser yekê ji van du vebijêrkan bitikîne</h1>
+
+											<a onclick="redirectToWhatsApp('buy_kr.html')" target="_blank" class="whatsapp-button">
+												<img src="shpping.png" alt="WhatsApp Icon">    Ji bo kirînê
+											</a>
+											<script>
+												function redirectToWhatsApp(url) {
+												   window.location.href = url;
+												}
+											 </script>
 												<a href="https://www.instagram.com/kurdistan_u_tu/" target="_blank" class="instagram-button">
-													<img src="assets/images/insta_logo.png" alt="Instagram Icon">Instagram
+													<img src="assets/images/insta_logo.png" alt="Instagram Icon">   Ji bo pirsan 
 												</a>
 											</div>
 										</div>
@@ -403,7 +498,7 @@
 						<div class="mu-author-area">
 
 							<div class="mu-heading-area">
-								<h2 class="mu-heading-title">عن الكاتب</h2>
+								<h3 class="mu-heading-title">Derbarê nivîskar da </h3>
 								<span class="mu-header-dot"></span>
 							</div>
 
@@ -417,17 +512,16 @@
 									</div>
 									<div class="col-md-6">
 										<div class="mu-author-info">
-											<h3>جوان عثمان</h3>
-											<p>أنا جوان، من غرب كردستان وتحديداً من مدينة عفرين</p>
-											<p>في عام 2015، قررت الهرب من الحرب، لجأت إلى الدنمارك بحثاً عن الأمان والأفق الجديدة بدأت هناك في مزيج من العمل والدراسة، حتى تمكنت من الحصول على شهادة الهندسة الإلكترونية من جامعة أوغوس الدنماركية</p>
-											<p>من بين اعمالي الأدبية، سُجلت مشاركتي في كتاب "المهاجرين القاصرين الذين خرجوا من الحرب وحيدين بلا أهل". هذا الكتاب صدر باللغة الدنماركية،و تم بيع أكثر من عشرة آلاف نسخة منه </p>
-											<p>أما عملي الحالي، فأنا أعمل كمهندس في مجال الإلكترونيات، وأنا أيضاً كاتب ومصمم جرافيك وطباعة. بالإضافة إلى ذلك، أعمل أيضا  في إنشاء المواقع الإلكترونية 
-									و يمتد اهتمامي ليشمل مجال إلقاء المحاضرات لمختلف الأعمار في الدنمارك</p>
+											<h3>Ciwan Osman </h3>
+											<p>Ciwan Osman ji Rojavayê Kurdistanê </p>
+											<p>Di sala 2015an da, biryara reva ji şer da, û di gera li ewlehî û asoyine nû da li Danîmarkê serê xwe li penaberîyê xist, û li wir di navbera kar û xwendinê da diçû û dihat, heta ku bawernameya endazyarîya elektronîkê ji zanîngeha Aarhusê bi dest xist.  </p>
+											<p>Ji nav xebatên wî yên wêjeyî, beşdarbûna wî di pirtûka ”Koçberên nûciwan, ên ku ji şer tenê û bê xwedî derketine” da cih girt. Ev pirtûk bi zimanê danîmarkî derket û zêdetirî ji deh hezar kopî jê hatine firotin.  </p>
+											<p> Lê karê wî yê niha, ew weke endazyar di warê elektronîkê da dixebite, û ew nivîskar û sazkarê grafîk û çapê ye jî. Ji bilî hindê, di warên avakirina malperên elektronî da dixebite û meraqa wî digihîne heta bi pêşkêşvanîya semîneran ji bo temenên cihêreng li Danîmarkê.</p>
 
-									<p>وبجانب الأعمال اعمل أيضا كمسؤول عن قضايا الأطفال الوحيدين  ومساعدتهم في لم شملهم مع اهاليهم وإلى هذه اللحظة تم مساعدة وجمع لم شمل لأكثر من 70 عائلة من مختلف البلدان مع اولادهم في الدنمارك</p>
-									<p>هذه كانت بعض السطور للتعريف عن نفسي واتمنى ان يكون هذا الكتاب يناسب تطلعاتكم وتوقاعتكم</p>
-									<p>مع أطيب التمنيات لكم </p>
-									<p>جوان عثمان</p>
+									<p>Li kêlek van karan, wekî berpirsê dosyayên zarokên bêxwedî dixebite û alîkarîya wan di mijarên gihandina destê wan û xwedîyên wan bi hev va dike, û heta vê kêlîyê alîkarî da û destê zêdetir ji 70 malbatî ji welatên cihêreng li Danîmarkê gihandine hevdu.</p>
+									<p>Ev çend xêz bûn ji bo pênaseya nivîskar û ew hêvî dike ku ev pirtûk li gorî hêvî û mirazên we be.</p>
+									<p>Li gel silavên germ </p>
+									<p>Ciwan Osman</p>
 
 
 											<img class="mu-author-sign" src="assets/images/author-signature.png" alt="Author Signature">
@@ -463,7 +557,7 @@
 		<div class="container">
 			<div class="mu-footer-area">
 				
-				<p class="mu-copyright">&copy; Made by Jwan Osman</p>
+				<h2 class="mu-copyright">Malper hat amadekirin ji aliyê &copy;Jwan Osman </h2>
 			</div>
 		</div>
 
@@ -488,6 +582,9 @@
     <!-- Custom js -->
 	<script type="text/javascript" src="assets/js/custom.js"></script>
 
+	
+
+	
 
   </body>
 </html>
